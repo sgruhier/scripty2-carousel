@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>Mac Store Example</title>
+	<link rel="stylesheet" href="productbrowser.css" type="text/css" />
+	
+</head>
+
+<body>
+  <div id="productbrowser" style="overflow: hidden;">
+  	<div id="pb-productbrowsercontainer" style="overflow: hidden;" class="ui-carousel-container">
+  		<ul id="pb-productslider">
+  			<li id="pb-airportexpress" class="pb-productimage"><a href="#">AirPort Express</a></li>
+  			<li id="pb-airportextreme" class="pb-productimage"><a href="#">AirPort Extreme</a></li>
+  			<li id="pb-timecapsule" class="pb-productimage"><a href="#">Time Capsule</a></li>
+  			<li id="pb-keyboards" class="pb-productimage"><a href="#">Keyboard</a></li>
+  			<li id="pb-magicmouse" class="pb-productimage"><a href="#">Magic Mouse</a></li>
+  			<li id="pb-displays" class="pb-productimage"><a href="#">LED Cinema Display</a></li>
+  			<li id="pb-macbook" class="pb-productimage"><a href="#">MacBook</a></li>
+  			<li id="pb-macbookpro" class="pb-productimage"><a href="#">MacBook Pro</a></li>
+  			<li id="pb-macbookair" class="pb-productimage"><a href="#">MacBook Air</a></li>
+  			<li id="pb-imac" class="pb-productimage"><a href="#">iMac</a></li>
+  			<li id="pb-macmini" class="pb-productimage"><a href="#">Mac mini</a></li>
+  			<li id="pb-macpro" class="pb-productimage"><a href="#">Mac Pro</a></li>
+  			<li id="pb-macosx" class="pb-productimage"><a href="#">Mac OS X</a></li>
+  			<li id="pb-ilife" class="pb-productimage"><a href="#">iLife</a></li>
+  			<li id="pb-iwork" class="pb-productimage"><a href="#">iWork</a></li>
+  			<li id="pb-mobileme" class="pb-productimage"><a href="#">MobileMe</a></li>
+  			<li id="pb-safari" class="pb-productimage"><a href="#">Safari</a></li>
+  			<li id="pb-quicktime" class="pb-productimage"><a href="#">QuickTime</a></li>
+  			<li id="pb-aperture" class="pb-productimage"><a href="#">Aperture</a></li>
+  			<li id="pb-finalcut" class="pb-productimage"><a href="#">Final Cut Studio</a></li>
+  			<li id="pb-finalcutserver" class="pb-productimage"><a href="#">Final Cut Server</a></li>
+  			<li id="pb-finalcutexpress" class="pb-productimage"><a href="#">Final Cut Express</a></li>
+  			<li id="pb-logicstudio" class="pb-productimage"><a href="#">Logic Studio</a></li>
+  			<li id="pb-logicexpress" class="pb-productimage"><a href="#">Logic Express</a></li>
+  			<li id="pb-ard" class="pb-productimage"><a href="#">Apple Remote Desktop</a></li>
+  			<li id="pb-macosxserver" class="pb-productimage"><a href="#me):true">Mac OS X Server</a></li>
+  			<li id="pb-xserve" class="pb-productimage"><a href="#">Xserve</a></li>
+  			<li id="pb-xsan" class="pb-productimage"><a href="#">Xsan</a></li>
+  		</ul>
+  		<div id="pb-productslidertrack" style="visibility: visible;">
+  			<div id="pb-productsliderhandle" class="selected"></div>
+  			<div id="pb-productsliderhandleimage"></div>
+  			<span id="pb-cat1" class="pb-catclass8">Accessories</span>
+  			<span id="pb-cat2" class="pb-catclass8">Macs</span>
+  			<span id="pb-cat3" class="pb-catclass8">Applications</span>
+  			<span id="pb-cat4" class="pb-catclass8">Servers</span>
+  		</div>
+  		<div id="pb-leftarrow"  class="ui-carousel-prev"></div>
+  		<div id="pb-rightarrow" class="ui-carousel-next"></div>
+  	</div>
+  </div>
+  
+  <script src="../../lib/prototype.js" type="text/javascript"></script>
+  <script src="../../lib/s2.js" type="text/javascript"></script>
+  <script src="../../src/carousel.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    // Create a carousel in one-line code
+    var carousel = new S2.UI.Carousel("productbrowser");
+    
+    // Slider
+    var slider = $('pb-productsliderhandleimage');
+        width  = $('pb-productslidertrack').getWidth() - slider.getWidth();
+        
+    // Update slider position when carousel position changes
+    carousel.getContainer().observe('carousel:position:changed', function(event) {
+      slider.style.marginLeft = width * carousel.getRelativePosition() + 'px';
+    });
+    
+    // Click on labels
+    $("pb-productslidertrack").on("click", "span", function(event, element) { 
+      var steps = {'pb-cat1': 0, 'pb-cat2': 6, 'pb-cat3': 13, 'pb-cat4': 24};
+      carousel.goTo(steps[element.id]);
+    }); 
+
+    // Smallest code to make a slider behavior by dragging the slider's handle
+    slider.observe('mousedown', function(event) {
+      event.stop();
+      var mouseX = event.pointerX();
+      function mousemove(event) {
+        // Get new slider position to compute relative position inside the carousel
+        var dx = event.pointerX() - mouseX, left = parseFloat(slider.style.marginLeft || 0);
+        carousel.goToRelative((left + dx )/ width, true);
+        mouseX = event.pointerX();
+        event.stop();
+      }
+      function mouseup(event) {
+        // Stop observing event on document
+        document.stopObserving('mouseup', mouseup).stopObserving('mousemove', mousemove);
+        event.stop();
+      }
+      // Observe mousemove and mouseup on document
+      document.observe('mousemove', mousemove).observe('mouseup', mouseup);
+    })
+  </script>
+
+</body>
+</html>

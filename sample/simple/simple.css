@@ -1,0 +1,90 @@
+#hcarousel {
+  float:left;
+  width:640px;
+  height: 200px;
+}
+
+.ui-carousel-horizontal .ui-carousel-container {
+  float: left;
+  width: 600px;
+  height: 200px;
+  overflow:hidden;
+  
+}
+
+.ui-carousel-horizontal .ui-carousel-container ul {
+  float:left;
+  width: 10000000px;
+  height: 200px;
+  margin:0;
+  padding:0;
+}
+
+.ui-carousel-horizontal .ui-carousel-container ul li {
+  float:left;
+  width:200px;
+  height: 200px;
+  list-style:none;
+  line-height: 200px;
+  font-size: 50px;
+  text-align: center;
+  margin:0;
+  padding:0;
+}
+
+.ui-carousel-horizontal .ui-carousel-prev,  .ui-carousel-horizontal .ui-carousel-next,
+.ui-carousel-horizontal .ui-carousel-prev a,  .ui-carousel-horizontal .ui-carousel-next a  {
+  float:left;
+  width: 20px;
+  height:200px;
+  line-height: 200px;
+  font-size: 20px;
+  text-align:center;
+}
+
+.ui-carousel-horizontal .ui-carousel-prev a,  .ui-carousel-horizontal .ui-carousel-next a {
+  color:#6CF;
+  text-decoration:none;
+}
+
+.ui-carousel-horizontal .ui-carousel-prev a:hover,  .ui-carousel-horizontal .ui-carousel-next a:hover {
+  background: #6CF;
+  color:#FFF;
+}
+
+.item1 {
+  background:#F2F2F2;
+}
+.item2 {
+  background:#E5E5E5;
+}
+.item3 {
+  background:#D8D8D8;
+}
+.item4 {
+  background:#CCC;
+}
+.item5 {
+  background:#BFBFBF;
+}
+.item6 {
+  background:#B2B2B2;
+}
+.item7 {
+  background:#A5A5A5;
+}
+.item8 {
+  background:#999;
+}
+.item9 {
+  background:#8C8C8C;
+}
+.item10 {
+  background:#7F7F7F;  
+}
+.item11 {
+  background:#727272;
+}
+.item12 {
+  background:#666;
+}

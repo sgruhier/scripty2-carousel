@@ -1,0 +1,111 @@
+html {
+background-color:#F7F7F7;
+}
+
+body {
+color:#333333;
+font-family:"Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif;
+font-size:12px;
+font-size-adjust:none;
+font-style:normal;
+font-variant:normal;
+font-weight:normal;
+line-height:18px;
+}
+
+a:link, a:visited, a:active {
+text-decoration:none;
+}
+
+ul li {
+  list-style:none;
+}
+/* PRODUCT BROWSER */
+#productbrowser { width:980px; height:180px; margin:0 2px; font-size:12px; line-height:18px; background:url(images/productbrowser_background_20081014.jpg) no-repeat top; overflow:auto; }
+#pb-productbrowsercontainer { position:relative; width:980px; height:180px; margin:0 auto; }
+#pb-productslider { top:4px; left:0; width:3900px; height:140px; position:absolute; margin:0; padding:0; }
+#pb-productslider .pb-productimage { float:left; width:136px; height:140px; position:relative; top:0; }
+#pb-productslider .pb-productimage a:link,
+#pb-productslider .pb-productimage a:visited { float:left; width:100%; padding-top:125px; overflow:hidden; color:#ccc; font-size:11px; text-align:center; background-position:50% 100%; background-repeat:no-repeat; }
+#pb-productslider .pb-productimage a:hover { text-decoration:none; color:#fff; }
+#pb-productslidertrack { position:absolute; top:152px; left:18px; width:944px; height:19px; overflow:hidden; background:url(images/productbrowser_scrollbar_20070622.png) no-repeat; visibility:hidden; }
+#pb-cat1,
+#pb-cat2,
+#pb-cat3,
+#pb-cat4 { position:absolute; top:0; z-index:150; color:#fff; font-size:11px; cursor:pointer; }
+#pb-cat1 { left:57px; }
+#pb-cat2 { left:296px; }
+#pb-cat3 { left:536px; }
+#pb-cat4 { left:833px; }
+#pb-productsliderhandle { position:absolute; width:181px; height:19px; cursor:pointer; z-index:5; }
+#pb-productsliderhandleimage { position:absolute; width:181px; height:19px; background:url(images/productbrowser_scroller_20080115.png) no-repeat; behavior:url(/global/scripts/lib/iepngfix.htc); cursor:pointer; z-index:5; }
+#pb-leftarrow { position:absolute; left:17px; top:152px; width:20px; height:20px; background:transparent; z-index:150; cursor:pointer; }
+#pb-rightarrow { position:absolute; left:942px; top:152px; width:20px; height:20px; background:transparent; z-index:150; cursor:pointer; }
+#pb-iphone-leftarrow { position:absolute; left:0; top:0; height:180px; width:69px; z-index:1000; cursor:pointer; background:url(images/pb_arrows_04_left.png) no-repeat top; }
+#pb-iphone-rightarrow { position:absolute; left:910px; top:0; height:180px; width:69px; z-index:100000; cursor:pointer; background:url(images/pb_arrows_04_right.png) no-repeat top; }
+
+/* PRODUCT BROWSER SECTION COLORS */
+#pb-productbrowsercontainer .pb-catclass0 { color:#666; }
+#pb-productbrowsercontainer .pb-catclass1 { color:#777; }
+#pb-productbrowsercontainer .pb-catclass2 { color:#888; }
+#pb-productbrowsercontainer .pb-catclass3 { color:#999; }
+#pb-productbrowsercontainer .pb-catclass4 { color:#aaa; }
+#pb-productbrowsercontainer .pb-catclass5 { color:#bbb; }
+#pb-productbrowsercontainer .pb-catclass6 { color:#ccc; }
+#pb-productbrowsercontainer .pb-catclass7 { color:#ddd; }
+#pb-productbrowsercontainer .pb-catclass8 { color:#eee; }
+#pb-productbrowsercontainer .pb-catclass9 { color:#eee; }
+#pb-productbrowsercontainer .pb-catclass10 { color:#fff; }
+#pb-productbrowsercontainer .pb-catclass11 { color:#fff; }
+#pb-productbrowsercontainer #pb-cat1.pb-catclass5 { color:#fff; }
+
+/* PRODUCT BROWSER PRODUCTS */
+#pb-productslider #pb-airportexpress a { background-image:url(images/pb_airport_express.jpg); }
+#pb-productslider #pb-airportextreme a { background-image:url(images/pb_airport_extreme.jpg); }
+#pb-productslider #pb-timecapsule a { background-image:url(images/pb_timecapsule_20080115.jpg); }
+#pb-productslider #pb-keyboards a { background-image:url(images/pb_keyboards_20091020.jpg); }
+#pb-productslider #pb-magicmouse a { background-image:url(images/pb_magic_mouse_20091020.jpg); }
+#pb-productslider #pb-mightymouse a { background-image:url(images/pb_mighty_mouse.jpg); }
+#pb-productslider #pb-displays a { background-image:url(images/pb_led_cinema_display_20091020.jpg); }
+#pb-productslider #pb-macbook a { background-image:url(images/pb_macbook_20091020.jpg); }
+#pb-productslider #pb-macbookpro a { background-image:url(images/pb_macbookpro_20090910.jpg); }
+#pb-productslider #pb-macbookair a { background-image:url(images/pb_macbookair_20090828.jpg); }
+#pb-productslider #pb-imac a { background-image:url(images/pb_imac_20091020.jpg); }
+#pb-productslider #pb-macmini a { background-image:url(images/pb_mac_mini_20090608.jpg); }
+#pb-productslider #pb-macpro a { background-image:url(images/pb_mac_pro_20090608.jpg); }
+#pb-productslider #pb-macosx a { background-image:url(images/pb_macosx_20090910.jpg); }
+#pb-productslider #pb-ilife a { background-image:url(images/pb_ilife_20091029.jpg); }
+#pb-productslider #pb-iwork a { background-image:url(images/pb_iwork_20091029.jpg); }
+#pb-productslider #pb-mobileme a { background-image:url(images/pb_mobile_me.jpg); }
+#pb-productslider #pb-safari a { background-image:url(images/pb_safari20090618.jpg); }
+#pb-productslider #pb-quicktime a { background-image:url(images/pb_quicktime.jpg); }
+#pb-productslider #pb-aperture a { background-image:url(images/pb_aperture_20091020.jpg); }
+#pb-productslider #pb-finalcut a { background-image:url(images/pb_final_cut_studio_20090723.jpg); }
+#pb-productslider #pb-finalcutserver a { background-image:url(images/pb_final_cut_server_20090723.jpg); }
+#pb-productslider #pb-finalcutexpress a { background-image:url(images/pb_final_cut_express_20080115.jpg); }
+#pb-productslider #pb-logicstudio a { background-image:url(images/pb_logic_studio_20090723.jpg); }
+#pb-productslider #pb-logicexpress a { background-image:url(images/pb_logic_express_20090723.jpg); }
+#pb-productslider #pb-ard a { background-image:url(images/pb_apple_remote_desktop_20090825.jpg); }
+#pb-productslider #pb-macosxserver a { background-image:url(images/pb_macosx_server_20090824.jpg); }
+#pb-productslider #pb-xserve a { background-image:url(images/pb_xserve.jpg); }
+#pb-productslider #pb-xsan a { background-image:url(images/pb_xsan_20090824.jpg); }
+
+/* PRODUCT REPOSITIONING */
+#pb-productslider #pb-airportexpress { margin:0 -25px 0 0px; }
+#pb-productslider #pb-airportextreme { margin:0 0px 0 7px; }
+#pb-productslider #pb-timecapsule { margin:0 15px 0 -5px; }
+#pb-productslider #pb-keyboards { margin:0 0px; }
+#pb-productslider #pb-displays { margin:0 0px 0 7px; }
+#pb-productslider #pb-macbook { margin:0 0px 0 35px; }
+#pb-productslider #pb-macbookpro { margin:0 0 0 12px; }
+#pb-productslider #pb-macbookair { margin:0 0 0 13px; }
+#pb-productslider #pb-imac { margin:0 14px 0 22px; }
+#pb-productslider #pb-macmini { margin:0 -18px; }
+#pb-productslider #pb-macpro { margin:0 0 0 -21px; }
+#pb-productslider #pb-macosx { margin:0 -9px 0 -29px; }
+#pb-productslider #pb-xserve { margin:0 0px 0 0px; }
+#pb-productslider #pb-xsan { margin:0 0px 0 -14px; }
+#pb-productslider #pb-finalcutexpress { margin:0 -10px 0 0px; }
+#pb-productslider #pb-macosxserver { margin:0 0px 0 0px; }
+#pb-productslider #pb-finalcutserver { margin:0 10px 0 0px; }
+#pb-productslider #pb-xsan { margin-left:0px; }
