@@ -6,6 +6,13 @@ h1, h2 {
   float:left;
   width:100%;
 }
+ 
+#container {
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+  width:1024px;
+} 
 
 #hcarousel {
   float:left;
@@ -23,39 +30,15 @@ h1, h2 {
   visibility:hidden;
 }
 
-.item1 {
-  background:#F2F2F2;
-}
-.item2 {
-  background:#E5E5E5;
-}
-.item3 {
-  background:#D8D8D8;
-}
-.item4 {
-  background:#CCC;
-}
-.item5 {
-  background:#BFBFBF;
-}
-.item6 {
-  background:#B2B2B2;
-}
-.item7 {
-  background:#A5A5A5;
-}
-.item8 {
-  background:#999;
-}
-.item9 {
-  background:#8C8C8C;
-}
-.item10 {
-  background:#7F7F7F;  
-}
-.item11 {
-  background:#727272;
-}
-.item12 {
-  background:#666;
-}
+.item1 {  background:#F2F2F2; }
+.item2 {  background:#E5E5E5; }
+.item3 {  background:#D8D8D8; }
+.item4 {  background:#CCC;    }
+.item5 {  background:#BFBFBF; }
+.item6 {  background:#B2B2B2; }
+.item7 {  background:#A5A5A5; }
+.item8 {  background:#999;    }
+.item9 {  background:#8C8C8C; }
+.item10 { background:#7F7F7F; }
+.item11 { background:#727272; }
+.item12 { background:#666;    }  

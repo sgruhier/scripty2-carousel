@@ -11,50 +11,78 @@
 </head>
 
 <body>
-  <div id="productbrowser" style="overflow: hidden;">
-  	<div id="pb-productbrowsercontainer" style="overflow: hidden;" class="ui-carousel-container">
-  		<ul id="pb-productslider">
-  			<li id="pb-airportexpress" class="pb-productimage"><a href="#">AirPort Express</a></li>
-  			<li id="pb-airportextreme" class="pb-productimage"><a href="#">AirPort Extreme</a></li>
-  			<li id="pb-timecapsule" class="pb-productimage"><a href="#">Time Capsule</a></li>
-  			<li id="pb-keyboards" class="pb-productimage"><a href="#">Keyboard</a></li>
-  			<li id="pb-magicmouse" class="pb-productimage"><a href="#">Magic Mouse</a></li>
-  			<li id="pb-displays" class="pb-productimage"><a href="#">LED Cinema Display</a></li>
-  			<li id="pb-macbook" class="pb-productimage"><a href="#">MacBook</a></li>
-  			<li id="pb-macbookpro" class="pb-productimage"><a href="#">MacBook Pro</a></li>
-  			<li id="pb-macbookair" class="pb-productimage"><a href="#">MacBook Air</a></li>
-  			<li id="pb-imac" class="pb-productimage"><a href="#">iMac</a></li>
-  			<li id="pb-macmini" class="pb-productimage"><a href="#">Mac mini</a></li>
-  			<li id="pb-macpro" class="pb-productimage"><a href="#">Mac Pro</a></li>
-  			<li id="pb-macosx" class="pb-productimage"><a href="#">Mac OS X</a></li>
-  			<li id="pb-ilife" class="pb-productimage"><a href="#">iLife</a></li>
-  			<li id="pb-iwork" class="pb-productimage"><a href="#">iWork</a></li>
-  			<li id="pb-mobileme" class="pb-productimage"><a href="#">MobileMe</a></li>
-  			<li id="pb-safari" class="pb-productimage"><a href="#">Safari</a></li>
-  			<li id="pb-quicktime" class="pb-productimage"><a href="#">QuickTime</a></li>
-  			<li id="pb-aperture" class="pb-productimage"><a href="#">Aperture</a></li>
-  			<li id="pb-finalcut" class="pb-productimage"><a href="#">Final Cut Studio</a></li>
-  			<li id="pb-finalcutserver" class="pb-productimage"><a href="#">Final Cut Server</a></li>
-  			<li id="pb-finalcutexpress" class="pb-productimage"><a href="#">Final Cut Express</a></li>
-  			<li id="pb-logicstudio" class="pb-productimage"><a href="#">Logic Studio</a></li>
-  			<li id="pb-logicexpress" class="pb-productimage"><a href="#">Logic Express</a></li>
-  			<li id="pb-ard" class="pb-productimage"><a href="#">Apple Remote Desktop</a></li>
-  			<li id="pb-macosxserver" class="pb-productimage"><a href="#me):true">Mac OS X Server</a></li>
-  			<li id="pb-xserve" class="pb-productimage"><a href="#">Xserve</a></li>
-  			<li id="pb-xsan" class="pb-productimage"><a href="#">Xsan</a></li>
-  		</ul>
-  		<div id="pb-productslidertrack" style="visibility: visible;">
-  			<div id="pb-productsliderhandle" class="selected"></div>
-  			<div id="pb-productsliderhandleimage"></div>
-  			<span id="pb-cat1" class="pb-catclass8">Accessories</span>
-  			<span id="pb-cat2" class="pb-catclass8">Macs</span>
-  			<span id="pb-cat3" class="pb-catclass8">Applications</span>
-  			<span id="pb-cat4" class="pb-catclass8">Servers</span>
-  		</div>
-  		<div id="pb-leftarrow"  class="ui-carousel-prev"></div>
-  		<div id="pb-rightarrow" class="ui-carousel-next"></div>
-  	</div>
-  </div>
+  <a href="http://github.com/sgruhier/scripty2-carousel"><img style="position: absolute; top: 0; left: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+  <div id="container">
+    <h1>Apple Store carousel example with scripty2</h1>
+    <p>
+      This example is the same carousel that you can have on <a href='http://www.apple.com/mac/'>http://www.apple.com/mac/</a>.
+    </p>
+    <p>
+      It's a one-line code to have carousel with next/previous button working. Then few lines of code to connect the slider and the clickable labels inside the slider. All code is detailed below.
+      <br/>
+      HTML markup hasn't been modified from the Apple site version.
+    </p>
+    <p>
+      Download/Fork code on github: <a href="http://github.com/sgruhier/scripty2-carousel">http://github.com/sgruhier/scripty2-carousel</a>
+    </p>
+    <div id="productbrowser" style="overflow: hidden;">
+    	<div id="pb-productbrowsercontainer" style="overflow: hidden;" class="ui-carousel-container">
+    		<ul id="pb-productslider">
+    			<li id="pb-airportexpress" class="pb-productimage"><a href="#">AirPort Express</a></li>
+    			<li id="pb-airportextreme" class="pb-productimage"><a href="#">AirPort Extreme</a></li>
+    			<li id="pb-timecapsule" class="pb-productimage"><a href="#">Time Capsule</a></li>
+    			<li id="pb-keyboards" class="pb-productimage"><a href="#">Keyboard</a></li>
+    			<li id="pb-magicmouse" class="pb-productimage"><a href="#">Magic Mouse</a></li>
+    			<li id="pb-displays" class="pb-productimage"><a href="#">LED Cinema Display</a></li>
+    			<li id="pb-macbook" class="pb-productimage"><a href="#">MacBook</a></li>
+    			<li id="pb-macbookpro" class="pb-productimage"><a href="#">MacBook Pro</a></li>
+    			<li id="pb-macbookair" class="pb-productimage"><a href="#">MacBook Air</a></li>
+    			<li id="pb-imac" class="pb-productimage"><a href="#">iMac</a></li>
+    			<li id="pb-macmini" class="pb-productimage"><a href="#">Mac mini</a></li>
+    			<li id="pb-macpro" class="pb-productimage"><a href="#">Mac Pro</a></li>
+    			<li id="pb-macosx" class="pb-productimage"><a href="#">Mac OS X</a></li>
+    			<li id="pb-ilife" class="pb-productimage"><a href="#">iLife</a></li>
+    			<li id="pb-iwork" class="pb-productimage"><a href="#">iWork</a></li>
+    			<li id="pb-mobileme" class="pb-productimage"><a href="#">MobileMe</a></li>
+    			<li id="pb-safari" class="pb-productimage"><a href="#">Safari</a></li>
+    			<li id="pb-quicktime" class="pb-productimage"><a href="#">QuickTime</a></li>
+    			<li id="pb-aperture" class="pb-productimage"><a href="#">Aperture</a></li>
+    			<li id="pb-finalcut" class="pb-productimage"><a href="#">Final Cut Studio</a></li>
+    			<li id="pb-finalcutserver" class="pb-productimage"><a href="#">Final Cut Server</a></li>
+    			<li id="pb-finalcutexpress" class="pb-productimage"><a href="#">Final Cut Express</a></li>
+    			<li id="pb-logicstudio" class="pb-productimage"><a href="#">Logic Studio</a></li>
+    			<li id="pb-logicexpress" class="pb-productimage"><a href="#">Logic Express</a></li>
+    			<li id="pb-ard" class="pb-productimage"><a href="#">Apple Remote Desktop</a></li>
+    			<li id="pb-macosxserver" class="pb-productimage"><a href="#me):true">Mac OS X Server</a></li>
+    			<li id="pb-xserve" class="pb-productimage"><a href="#">Xserve</a></li>
+    			<li id="pb-xsan" class="pb-productimage"><a href="#">Xsan</a></li>
+    		</ul>
+    		<div id="pb-productslidertrack" style="visibility: visible;">
+    			<div id="pb-productsliderhandle" class="selected"></div>
+    			<div id="pb-productsliderhandleimage"></div>
+    			<span id="pb-cat1" class="pb-catclass8">Accessories</span>
+    			<span id="pb-cat2" class="pb-catclass8">Macs</span>
+    			<span id="pb-cat3" class="pb-catclass8">Applications</span>
+    			<span id="pb-cat4" class="pb-catclass8">Servers</span>
+    		</div>
+    		<div id="pb-leftarrow"></div>
+    		<div id="pb-rightarrow"></div>
+    	</div>
+    </div>
+    <h2>Scripty2 carousel creation</h2>
+    <script src="http://gist.github.com/365662.js"></script>
+    
+    <h2>Connect slider to carousel to update its position when carousel changes its position</h2>
+    <script src="http://gist.github.com/365663.js"></script>
+    
+    <h2>Connect click on slider's labels to scroll to the correct position</h2>
+    <script src="http://gist.github.com/365664.js"></script>
+    
+    <h2>Connect mouse click-and-drag on the slider</h2>
+    <script src="http://gist.github.com/365665.js"></script>
+  </div>  
+  
+  
   
   <script src="../../lib/prototype.js" type="text/javascript"></script>
   <script src="../../lib/s2.js" type="text/javascript"></script>
@@ -62,12 +90,12 @@
 
   <script type="text/javascript">
     // Create a carousel in one-line code
-    var carousel = new S2.UI.Carousel("productbrowser");
+    var carousel = new S2.UI.Carousel("productbrowser", {nextSelector: '#pb-rightarrow', prevSelector: '#pb-leftarrow'});
     
     // Slider
     var slider = $('pb-productsliderhandleimage');
         width  = $('pb-productslidertrack').getWidth() - slider.getWidth();
-        
+    
     // Update slider position when carousel position changes
     carousel.getContainer().observe('carousel:position:changed', function(event) {
       slider.style.marginLeft = width * carousel.getRelativePosition() + 'px';
@@ -82,20 +110,20 @@
     // Smallest code to make a slider behavior by dragging the slider's handle
     slider.observe('mousedown', function(event) {
       event.stop();
-      var mouseX = event.pointerX();
+      var mouseX = event.pointerX(), left = parseFloat(slider.style.marginLeft || 0);
       function mousemove(event) {
-        // Get new slider position to compute relative position inside the carousel
-        var dx = event.pointerX() - mouseX, left = parseFloat(slider.style.marginLeft || 0);
-        carousel.goToRelative((left + dx )/ width, true);
-        mouseX = event.pointerX();
+        // Compute slider relative position
+        var dx   = event.pointerX() - mouseX, 
+            pos  = (left + dx )/ width;
+        carousel.goToRelative(pos, true);
         event.stop();
       }
       function mouseup(event) {
-        // Stop observing event on document
+        // Stop observing events on document
         document.stopObserving('mouseup', mouseup).stopObserving('mousemove', mousemove);
         event.stop();
       }
-      // Observe mousemove and mouseup on document
+      // Observe mousemove and mouseup on document for dragging behavior
       document.observe('mousemove', mousemove).observe('mouseup', mouseup);
     })
   </script>

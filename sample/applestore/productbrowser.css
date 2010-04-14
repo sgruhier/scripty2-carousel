@@ -1,25 +1,41 @@
 html {
-background-color:#F7F7F7;
+  background-color:#F7F7F7;
 }
 
 body {
-color:#333333;
-font-family:"Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif;
-font-size:12px;
-font-size-adjust:none;
-font-style:normal;
-font-variant:normal;
-font-weight:normal;
-line-height:18px;
+  color:#333333;
+  font-family:"Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif;
+  font-size:12px;
+  font-size-adjust:none;
+  font-style:normal;
+  font-variant:normal;
+  font-weight:normal;
+  line-height:18px;
 }
 
 a:link, a:visited, a:active {
-text-decoration:none;
+  text-decoration:none;
 }
 
 ul li {
   list-style:none;
 }
+
+h1 {
+  text-align: center;
+}
+a {
+  color:#0488FF;
+  
+}
+#container {
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+  width:980px;
+} 
+
+
 /* PRODUCT BROWSER */
 #productbrowser { width:980px; height:180px; margin:0 2px; font-size:12px; line-height:18px; background:url(images/productbrowser_background_20081014.jpg) no-repeat top; overflow:auto; }
 #pb-productbrowsercontainer { position:relative; width:980px; height:180px; margin:0 auto; }

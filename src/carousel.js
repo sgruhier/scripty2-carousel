@@ -13,9 +13,9 @@ S2.UI.Carousel = Class.create(S2.UI.Mixin.Configurable, (function() {
     this.setOptions(options);
 
     this.root      = $(element);
-    this.next      = this.root.down("." + this.options.nextClass);
-    this.prev      = this.root.down("." + this.options.prevClass);
-    this.container = this.root.down("." + this.options.containerClass + " ul");
+    this.next      = this.root.down(this.options.nextSelector);
+    this.prev      = this.root.down(this.options.prevSelector);
+    this.container = this.root.down(this.options.containerSelector);
 
     this.prev.observe('click', scrollPrev.bind(this));
     this.next.observe('click', scrollNext.bind(this));
@@ -130,11 +130,11 @@ S2.UI.Carousel = Class.create(S2.UI.Mixin.Configurable, (function() {
 // Class methods/variables
 Object.extend(S2.UI.Carousel, {
   DEFAULT_OPTIONS: {
-    nextClass:      'ui-carousel-next',
-    prevClass:      'ui-carousel-prev',
-    containerClass: 'ui-carousel-container',
-    disableClass:   'ui-hide',
-    direction:      'horizontal',
-    fxOption:       {duration: 1, transition: S2.FX.Transitions.easeInOutExpo}
+    nextSelector:      '.ui-carousel-next',
+    prevSelector:      '.ui-carousel-prev',
+    containerSelector: '.ui-carousel-container ul',
+    disableClass:      'ui-hide',
+    direction:         'horizontal',
+    fxOption:          {duration: 1, transition: S2.FX.Transitions.easeInOutExpo}
   }
 });
