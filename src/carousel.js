@@ -34,7 +34,7 @@ S2.UI.Carousel = Class.create(S2.UI.Mixin.Configurable, (function() {
     this.maxPos = this.elements.length - this.nbVisibleElements;
     
     // Use a unique effect object!
-    this.effect = new S2.FX.Morph(this.container, this.options.fxOption);
+    this.effect = new S2.FX.Morph(this.container, Object.extend({after: updateScrollButton.bind(this)}, this.options.fxOption));
     
     // Hack update effect method
     var fxUpdate = this.effect.update, container = this.container;
@@ -42,7 +42,7 @@ S2.UI.Carousel = Class.create(S2.UI.Mixin.Configurable, (function() {
       fxUpdate.call(this, position);
       container.fire("carousel:position:changed", {position:position});
     }
-    updateScrollButton(this);
+    updateScrollButton.call(this);
   }
 
   function isHorizontal() {
@@ -72,6 +72,7 @@ S2.UI.Carousel = Class.create(S2.UI.Mixin.Configurable, (function() {
     if (withoutFx) {
       this.effect.element.setStyle(style);
       this.container.fire("carousel:position:changed", {position:position});
+      updateScrollButton.call(this);
     }
     else {
       this.effect.reset();
@@ -106,13 +107,13 @@ S2.UI.Carousel = Class.create(S2.UI.Mixin.Configurable, (function() {
     event.stop();
   }
 
-  function updateScrollButton(carousel) {
-    var position = carousel.getPosition();
+  function updateScrollButton() {
+    var position = this.getPosition();
     // Disable previous button if need be
-    carousel.prev[position == 0 ? "addClassName" : "removeClassName"](carousel.options.disableClass);
-    carousel.next[position + carousel.nbVisibleElements >= carousel.elements.length 
+    this.prev[position == 0 ? "addClassName" : "removeClassName"](this.options.disableClass);
+    this.next[position + this.nbVisibleElements >= this.elements.length 
       ? "addClassName" 
-      : "removeClassName"](carousel.options.disableClass);
+      : "removeClassName"](this.options.disableClass);
   }
 
   return {initialize:           initialize,
