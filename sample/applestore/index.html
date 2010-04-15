@@ -123,7 +123,11 @@
       }
       // Observe mousemove and mouseup on document for dragging behavior
       document.observe('mousemove', mousemove).observe('mouseup', mouseup);
-    })
+    });
+    
+    // Disable text selection on carousel
+    S2.UI.disableTextSelection($('productbrowser'));
+    
   </script>
 
 </body>
