@@ -58,7 +58,7 @@
     			<li id="pb-xsan" class="pb-productimage"><a href="#">Xsan</a></li>
     		</ul>
     		<div id="pb-productslidertrack" style="visibility: visible;">
-    			<div id="pb-productsliderhandle" class="selected"></div>
+    			<div id="pb-productsliderhandle"></div>
     			<div id="pb-productsliderhandleimage"></div>
     			<span id="pb-cat1" class="pb-catclass8">Accessories</span>
     			<span id="pb-cat2" class="pb-catclass8">Macs</span>
@@ -91,20 +91,25 @@
     var carousel = new S2.UI.Carousel("productbrowser", {nextSelector: '#pb-rightarrow', prevSelector: '#pb-leftarrow'});
     
     // Slider
-    var slider = $('pb-productsliderhandleimage');
-        width  = $('pb-productslidertrack').getWidth() - slider.getWidth();
+    var slider = $('pb-productsliderhandle'),
+        track  = $('pb-productslidertrack'),
+        width  = track.getWidth() - slider.getWidth();
     
     // Update slider position when carousel position changes
     carousel.getContainer().observe('carousel:position:changed', function(event) {
       slider.style.marginLeft = width * carousel.getRelativePosition() + 'px';
+      $('pb-productsliderhandleimage').style.marginLeft = slider.style.marginLeft;
     });
     
-    // Click on labels
-    $("pb-productslidertrack").on("click", "span", function(event, element) { 
+    // Click on track or labels
+    track.observe("mousedown", function(event) { 
+      var element = Event.element(event);
       var steps = {'pb-cat1': 0, 'pb-cat2': 6, 'pb-cat3': 13, 'pb-cat4': 24};
-      carousel.goTo(steps[element.id]);
+      var localMouseX = event.pointerX() - track.viewportOffset().left;
+      var pos = (localMouseX - slider.getWidth() / 2) / width * carousel.maxPos;
+      carousel.goTo(steps[element.id] || pos);
     }); 
-
+    
     // Smallest code to make a slider behavior by dragging the slider's handle
     slider.observe('mousedown', function(event) {
       event.stop();

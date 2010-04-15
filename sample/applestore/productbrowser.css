@@ -53,8 +53,8 @@ a {
 #pb-cat2 { left:296px; }
 #pb-cat3 { left:536px; }
 #pb-cat4 { left:833px; }
-#pb-productsliderhandle { position:absolute; width:181px; height:19px; cursor:pointer; z-index:5; }
-#pb-productsliderhandleimage { position:absolute; width:181px; height:19px; background:url(images/productbrowser_scroller_20080115.png) no-repeat; behavior:url(/global/scripts/lib/iepngfix.htc); cursor:pointer; z-index:5; }
+#pb-productsliderhandle { position:absolute; width:181px; height:19px; cursor:pointer; z-index:200; }
+#pb-productsliderhandleimage { position:absolute; width:181px; height:19px; background:url(images/productbrowser_scroller_20080115.png) no-repeat; _behavior:url(iepngfix.htc); cursor:pointer; z-index:5; }
 #pb-leftarrow { position:absolute; left:17px; top:152px; width:20px; height:20px; background:transparent; z-index:150; cursor:pointer; }
 #pb-rightarrow { position:absolute; left:942px; top:152px; width:20px; height:20px; background:transparent; z-index:150; cursor:pointer; }
 #pb-iphone-leftarrow { position:absolute; left:0; top:0; height:180px; width:69px; z-index:1000; cursor:pointer; background:url(images/pb_arrows_04_left.png) no-repeat top; }
