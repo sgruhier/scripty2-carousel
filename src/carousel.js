@@ -48,7 +48,6 @@ S2.UI.Carousel = Class.create(S2.UI.Mixin.Configurable, (function() {
   function isHorizontal() {
     return this.options.direction == 'horizontal';
   }
-
   
   function getPosition() {
     var pos = - parseFloat(this.container.getStyle("margin-" + this.attribute));
@@ -60,12 +59,9 @@ S2.UI.Carousel = Class.create(S2.UI.Mixin.Configurable, (function() {
   }
 
   function goTo(position, withoutFx) {
-    if (position < 0) {
-      position = 0;
-    }
-    if (position > this.maxPos) {
-      position = this.maxPos;
-    }
+    position = Math.max(0, position);
+    position = Math.min(position, this.maxPos);
+
     var pos   = - position * this.elementSize,
         style = 'margin-' + this.attribute + ':' + pos + 'px';
     
@@ -95,14 +91,14 @@ S2.UI.Carousel = Class.create(S2.UI.Mixin.Configurable, (function() {
 
   function scrollPrev(event) {
     if (this.getPosition() > 0) {
-      this.goTo(this.getPosition() - this.nbVisibleElements);
+      this.goTo(Math.ceil(this.getPosition() - this.nbVisibleElements));
     } 
     event.stop();
   }
 
   function scrollNext(event) {
     if (this.getPosition() + this.nbVisibleElements < this.elements.length) {
-      this.goTo(this.getPosition() + this.nbVisibleElements);
+      this.goTo(Math.floor(this.getPosition() + this.nbVisibleElements));
     }
     event.stop();
   }
@@ -135,6 +131,6 @@ Object.extend(S2.UI.Carousel, {
     containerSelector: '.ui-carousel-container ul',
     disableClass:      'ui-hide',
     direction:         'horizontal',
-    fxOption:          {duration: 1, transition: S2.FX.Transitions.easeInOutExpo}
+    fxOption:          {duration: 0.75, transition: S2.FX.Transitions.easeInOutExpo}
   }
 });
