@@ -87,52 +87,66 @@
   <script src="../../src/carousel.js" type="text/javascript"></script>
 
   <script type="text/javascript">
-    // Create a carousel in one-line code
-    var carousel = new S2.UI.Carousel("productbrowser", {nextSelector: '#pb-rightarrow', prevSelector: '#pb-leftarrow'});
-    
-    // Slider
-    var slider = $('pb-productsliderhandle'),
-        track  = $('pb-productslidertrack'),
-        width  = track.getWidth() - slider.getWidth();
-    
-    // Update slider position when carousel position changes
-    carousel.getContainer().observe('carousel:position:changed', function(event) {
-      slider.style.marginLeft = width * carousel.getRelativePosition() + 'px';
-      $('pb-productsliderhandleimage').style.marginLeft = slider.style.marginLeft;
-    });
-    
-    // Click on track or labels
-    track.observe("mousedown", function(event) { 
-      var element = Event.element(event);
-      var steps = {'pb-cat1': 0, 'pb-cat2': 6, 'pb-cat3': 13, 'pb-cat4': 24};
-      var localMouseX = event.pointerX() - track.viewportOffset().left;
-      var pos = (localMouseX - slider.getWidth() / 2) / width * carousel.maxPos;
-      carousel.goTo(steps[element.id] || pos);
-    }); 
-    
-    // Smallest code to make a slider behavior by dragging the slider's handle
-    slider.observe('mousedown', function(event) {
-      event.stop();
-      var mouseX = event.pointerX(), left = parseFloat(slider.style.marginLeft || 0);
-      function mousemove(event) {
+    (function () {
+      var mouseX;
+      
+      // Smallest code to make a slider behavior by dragging the slider's handle
+      function sliderMousedown(event) {
+        event.stop();
+        mouseX = event.pointerX(), left = parseFloat(slider.style.marginLeft || 0);
+
+        // Observe mousemove and mouseup on document for dragging behavior
+        document.observe('mousemove', sliderMousemove).observe('mouseup', sliderMouseup);
+      }
+      
+      function sliderMousemove(event) {
         // Compute slider relative position
         var dx   = event.pointerX() - mouseX, 
             pos  = (left + dx )/ width;
         carousel.goToRelative(pos, true);
         event.stop();
       }
-      function mouseup(event) {
+      
+      function sliderMouseup(event) {
         // Stop observing events on document
-        document.stopObserving('mouseup', mouseup).stopObserving('mousemove', mousemove);
+        document.stopObserving('mouseup', sliderMouseup).stopObserving('mousemove', sliderMousemove);
         event.stop();
       }
-      // Observe mousemove and mouseup on document for dragging behavior
-      document.observe('mousemove', mousemove).observe('mouseup', mouseup);
-    });
     
-    // Disable text selection on carousel
-    S2.UI.disableTextSelection($('productbrowser'));
+      // Create a carousel in one-line code
+      var carousel = new S2.UI.Carousel("productbrowser", {nextSelector: '#pb-rightarrow', prevSelector: '#pb-leftarrow'});
     
+      // Slider
+      var slider = $('pb-productsliderhandle'),
+          track  = $('pb-productslidertrack'),
+          width  = track.getWidth() - slider.getWidth();
+    
+      // Update slider position when carousel position changes
+      carousel.getContainer().observe('carousel:position:changed', function(event) {
+        slider.style.marginLeft = width * carousel.getRelativePosition() + 'px';
+        $('pb-productsliderhandleimage').style.marginLeft = slider.style.marginLeft;
+      });
+    
+      // Click on track or labels
+      track.observe("mousedown", function(event) { 
+        var element     = event.findElement(),
+            steps       = {'pb-cat1': 0, 'pb-cat2': 6, 'pb-cat3': 13, 'pb-cat4': 24},
+            localMouseX = event.pointerX() - track.viewportOffset().left,
+            pos         = (localMouseX - slider.getWidth() / 2) / width * carousel.maxPos;
+        if (steps[element.id]) {
+          carousel.goTo(steps[element.id] || pos);
+        }
+        else {
+          carousel.goTo(pos, true);
+          sliderMousedown(event);
+        }
+      }); 
+    
+      slider.observe('mousedown', sliderMousedown);
+    
+      // Disable text selection on carousel
+      S2.UI.disableTextSelection($('productbrowser'));
+    })();
   </script>
 
 </body>
