@@ -23,6 +23,10 @@
       HTML markup hasn't been modified from the Apple site version. Carousel connects events on existing HTML, it doesn't generate HTML code.
     </p>
     <p>
+      This example is just to show how to recreate apple carousel without modifying HTML. A better way to do it is to use scripty2 slider. I'll post
+      a new example later with scripty2 slider.
+    </p>
+    <p>
       Download/Fork code on github: <a href="http://github.com/sgruhier/scripty2-carousel">http://github.com/sgruhier/scripty2-carousel</a>
     </p>
     <div id="productbrowser" style="overflow: hidden;">
@@ -75,7 +79,7 @@
     <h2>Connect slider to carousel to update its position when carousel changes its position</h2>
     <script src="http://gist.github.com/365663.js"></script>
     
-    <h2>Connect click on slider's labels to scroll to the correct position</h2>
+    <h2>Connect click on slider's labels or slider's blank area to scroll to the correct position</h2>
     <script src="http://gist.github.com/365664.js"></script>
     
     <h2>Connect mouse click-and-drag on the slider</h2>
@@ -90,33 +94,10 @@
     (function () {
       var mouseX;
       
-      // Smallest code to make a slider behavior by dragging the slider's handle
-      function sliderMousedown(event) {
-        event.stop();
-        mouseX = event.pointerX(), left = parseFloat(slider.style.marginLeft || 0);
-
-        // Observe mousemove and mouseup on document for dragging behavior
-        document.observe('mousemove', sliderMousemove).observe('mouseup', sliderMouseup);
-      }
-      
-      function sliderMousemove(event) {
-        // Compute slider relative position
-        var dx   = event.pointerX() - mouseX, 
-            pos  = (left + dx )/ width;
-        carousel.goToRelative(pos, true);
-        event.stop();
-      }
-      
-      function sliderMouseup(event) {
-        // Stop observing events on document
-        document.stopObserving('mouseup', sliderMouseup).stopObserving('mousemove', sliderMousemove);
-        event.stop();
-      }
     
       // Create a carousel in one-line code
       var carousel = new S2.UI.Carousel("productbrowser", {nextSelector: '#pb-rightarrow', prevSelector: '#pb-leftarrow'});
     
-      // Slider
       var slider = $('pb-productsliderhandle'),
           track  = $('pb-productslidertrack'),
           width  = track.getWidth() - slider.getWidth();
@@ -133,7 +114,7 @@
             steps       = {'pb-cat1': 0, 'pb-cat2': 6, 'pb-cat3': 13, 'pb-cat4': 24},
             localMouseX = event.pointerX() - track.viewportOffset().left,
             pos         = (localMouseX - slider.getWidth() / 2) / width * carousel.maxPos;
-        if (steps[element.id]) {
+        if (element.id in steps) {
           carousel.goTo(steps[element.id] || pos);
         }
         else {
@@ -142,7 +123,30 @@
         }
       }); 
     
-      slider.observe('mousedown', sliderMousedown);
+    // Smallest code to make a slider behavior by dragging the slider's handle
+    function sliderMousedown(event) {
+      event.stop();
+      mouseX = event.pointerX(), left = parseFloat(slider.style.marginLeft || 0);
+
+      // Observe mousemove and mouseup on document for dragging behavior
+      document.observe('mousemove', sliderMousemove).observe('mouseup', sliderMouseup);
+    }
+    
+    function sliderMousemove(event) {
+      // Compute slider relative position
+      var dx   = event.pointerX() - mouseX, 
+          pos  = (left + dx )/ width;
+      carousel.goToRelative(pos, true);
+      event.stop();
+    }
+    
+    function sliderMouseup(event) {
+      // Stop observing events on document
+      document.stopObserving('mouseup', sliderMouseup).stopObserving('mousemove', sliderMousemove);
+      event.stop();
+    }
+ 
+    slider.observe('mousedown', sliderMousedown);
     
       // Disable text selection on carousel
       S2.UI.disableTextSelection($('productbrowser'));
