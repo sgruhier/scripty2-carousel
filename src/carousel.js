@@ -1,3 +1,4 @@
+// Add reset method to S2.FX.Element
 S2.FX.Element.addMethods({
   reset: function() {
     if(this.state == 'running') {
@@ -8,129 +9,163 @@ S2.FX.Element.addMethods({
   }
 });
   
-S2.UI.Carousel = Class.create(S2.UI.Mixin.Configurable, (function() {
-  function initialize(element, options) {
-    this.setOptions(options);
+(function(UI) {
+  UI.Carousel = Class.create(UI.Base, (function() {
+    function initialize(element, options) {
+      this.setOptions(options);
 
-    this.root      = $(element);
-    this.next      = this.root.down(this.options.nextSelector);
-    this.prev      = this.root.down(this.options.prevSelector);
-    this.container = this.root.down(this.options.containerSelector);
+      // Get elements
+      this.root      = $(element);
+      this.next      = this.root.down(this.options.nextSelector);
+      this.prev      = this.root.down(this.options.prevSelector);
+      this.container = this.root.down(this.options.containerSelector);
+      this.elements  = this.container.immediateDescendants();
 
-    this.prev.observe('click', scrollPrev.bind(this));
-    this.next.observe('click', scrollNext.bind(this));
-    this.elements = this.container.immediateDescendants();
+      // Connect events
+      if (this.next) {
+        this.prev.observe('click', _scrollPrev.bind(this));
+      }
+      if (this.prev) {
+        this.next.observe('click', _scrollNext.bind(this));
+      }
 
-    if (this.isHorizontal()) {
-      this.elementSize = this.elements.first().getWidth();
-      this.containerSize = this.container.up().getWidth();    
-      this.attribute = 'left';
-    } else {
-      this.elementSize = this.elements.first().getHeight();
-      this.containerSize = this.container.up().getHeight();    
-      this.attribute = 'top';
-    }
-    this.nbVisibleElements = Math.floor(this.containerSize / this.elementSize);
-    this.maxPos = this.elements.length - this.nbVisibleElements;
+      // Pre-compute values depending of carousel's orientation
+      if (this.isHorizontal()) {
+        this.elementSize = this.elements.first().getWidth();
+        this.containerSize = this.container.up().getWidth();    
+        this.attribute = 'left';
+      } else {
+        this.elementSize = this.elements.first().getHeight();
+        this.containerSize = this.container.up().getHeight();    
+        this.attribute = 'top';
+      }
+      this.nbVisibleElements = Math.floor(this.containerSize / this.elementSize);
+      this.maxPos            = this.elements.length - this.nbVisibleElements;
     
-    // Use a unique effect object!
-    this.effect = new S2.FX.Morph(this.container, Object.extend({after: updateScrollButton.bind(this)}, this.options.fxOption));
+      // Use a unique effect object!
+      this.effect = new S2.FX.Morph(this.container, Object.extend({after: _updateScrollButton.bind(this)}, this.options.fxOption));
     
-    // Hack update effect method
-    var fxUpdate = this.effect.update, container = this.container;
-    this.effect.update = function(position) {
-      fxUpdate.call(this, position);
-      container.fire("carousel:position:changed", {position:position});
+      // Hack update effect method to fire carousel:position:changed
+      var fxUpdate = this.effect.update, container = this.container;
+      this.effect.update = function(position) {
+        fxUpdate.call(this, position);
+        container.fire("carousel:position:changed", {position:position});
+      }
+      _updateScrollButton.call(this);
+      _createSlider.call(this);
     }
-    updateScrollButton.call(this);
-  }
 
-  function isHorizontal() {
-    return this.options.direction == 'horizontal';
-  }
+    function isHorizontal() {
+      return this.options.direction == 'horizontal';
+    }
   
-  function getPosition() {
-    var pos = - parseFloat(this.container.getStyle("margin-" + this.attribute));
-    return pos / this.elementSize;
-  }
+    function getEffect() {
+      return this.effect;
+    }
+
+    function getContainer() {
+      return this.container;
+    }
+
+    function getPosition() {
+      var pos = - parseFloat(this.container.getStyle("margin-" + this.attribute));
+      return pos / this.elementSize;
+    }
   
-  function getRelativePosition() {
-    return (this.getPosition() / this.maxPos);
-  }
+    function getRelativePosition() {
+      return (this.getPosition() / this.maxPos);
+    }
 
-  function goTo(position, withoutFx) {
-    position = Math.max(0, position);
-    position = Math.min(position, this.maxPos);
+    function goTo(position, withoutFx) {
+      position = Math.max(0, position);
+      position = Math.min(position, this.maxPos);
 
-    var pos   = - position * this.elementSize,
-        style = 'margin-' + this.attribute + ':' + pos + 'px';
+      var pos   = - position * this.elementSize,
+          style = 'margin-' + this.attribute + ':' + pos + 'px';
     
-    if (withoutFx) {
-      this.effect.element.setStyle(style);
-      this.container.fire("carousel:position:changed", {position:position});
-      updateScrollButton.call(this);
+      if (withoutFx) {
+        this.effect.element.setStyle(style);
+        this.container.fire("carousel:position:changed", {position:position});
+        _updateScrollButton.call(this);
+      }
+      else {
+        this.effect.reset();
+        this.effect.animate('style', this.effect.element, {style: style, propertyTransitions: { }});
+        this.effect.play();    
+      }
     }
-    else {
-      this.effect.reset();
-      this.effect.animate('style', this.effect.element, {style: style, propertyTransitions: { }});
-      this.effect.play();    
-    }
-  }
   
-  function goToRelative(relativePos, withoutFx) {
-    this.goTo(relativePos * this.maxPos, withoutFx);
-  }
-  
-  function getContainer() {
-    return this.container;
-  }
-
-  function getEffect() {
-    return this.effect;
-  }
-
-  function scrollPrev(event) {
-    if (this.getPosition() > 0) {
-      this.goTo(Math.ceil(this.getPosition() - this.nbVisibleElements));
-    } 
-    event.stop();
-  }
-
-  function scrollNext(event) {
-    if (this.getPosition() + this.nbVisibleElements < this.elements.length) {
-      this.goTo(Math.floor(this.getPosition() + this.nbVisibleElements));
+    function goToRelative(relativePos, withoutFx) {
+      this.goTo(relativePos * this.maxPos, withoutFx);
     }
-    event.stop();
-  }
+  
+    // Private methods
+    function _scrollPrev(event) {
+      if (this.getPosition() > 0) {
+        this.goTo(Math.ceil(this.getPosition() - this.nbVisibleElements));
+      } 
+      event.stop();
+    }
 
-  function updateScrollButton() {
-    var position = this.getPosition();
-    // Disable previous button if need be
-    this.prev[position == 0 ? "addClassName" : "removeClassName"](this.options.disableClass);
-    this.next[position + this.nbVisibleElements >= this.elements.length 
-      ? "addClassName" 
-      : "removeClassName"](this.options.disableClass);
-  }
+    function _scrollNext(event) {
+      if (this.getPosition() + this.nbVisibleElements < this.elements.length) {
+        this.goTo(Math.floor(this.getPosition() + this.nbVisibleElements));
+      }
+      event.stop();
+    }
 
-  return {initialize:           initialize,
-          isHorizontal:         isHorizontal,
-          getEffect:            getEffect,
-          getContainer:         getContainer,
-          getPosition:          getPosition,
-          getRelativePosition:  getRelativePosition,
-          goToRelative:         goToRelative,
-          goTo:                 goTo};
-})());
+    function _updateScrollButton() {
+      if (this.next && this.prev) {
+        var position = this.getPosition();
+        // Disable previous button if need be
+        this.prev[position == 0 ? "addClassName" : "removeClassName"](this.options.disableClass);
+        this.next[position + this.nbVisibleElements >= this.elements.length 
+          ? "addClassName" 
+          : "removeClassName"](this.options.disableClass);
+      }
+    }
+  
+    function _createSlider() {
+      if (this.options.slider) {
+        var self= this;
+        // Update method called when slider position changes
+        var update  = (function(values, slider) {
+          self.goToRelative(values[0]/100, true)
+        });
+      
+        // Create slider
+        this.slider = new S2.UI.Slider(this.options.slider, {onSlide: update, onSlide: update});
+      
+        this.getContainer().observe('carousel:position:changed', function(event) {
+          self.slider.setValue(self.getRelativePosition() * 100, 0);
+        });
+      }
+    };  
+
+    // Publish public methods
+    return {initialize:           initialize,
+            isHorizontal:         isHorizontal,
+            getEffect:            getEffect,
+            getContainer:         getContainer,
+            getPosition:          getPosition,
+            getRelativePosition:  getRelativePosition,
+            goToRelative:         goToRelative,
+            goTo:                 goTo};
+  })());
+  
+  // Class methods/variables
+  Object.extend(UI.Carousel, {
+    NAME: 'S2.UI.Carousel',
+    DEFAULT_OPTIONS: {
+      nextSelector:      '.ui-carousel-next',
+      prevSelector:      '.ui-carousel-prev',
+      containerSelector: '.ui-carousel-container ul',
+      disableClass:      'ui-hide',
+      direction:         'horizontal',
+      fxOption:          {duration: 0.75, transition: S2.FX.Transitions.easeInOutExpo},
+      slider:            null
+    }
+  });
+})(S2.UI);
 
 
-// Class methods/variables
-Object.extend(S2.UI.Carousel, {
-  DEFAULT_OPTIONS: {
-    nextSelector:      '.ui-carousel-next',
-    prevSelector:      '.ui-carousel-prev',
-    containerSelector: '.ui-carousel-container ul',
-    disableClass:      'ui-hide',
-    direction:         'horizontal',
-    fxOption:          {duration: 0.75, transition: S2.FX.Transitions.easeInOutExpo}
-  }
-});

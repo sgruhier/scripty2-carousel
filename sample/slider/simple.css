@@ -17,7 +17,7 @@ h1, h2 {
 #hcarousel {
   float:left;
   width:640px;
-  height: 200px;
+  height: 250px;
 }
 
 #vcarousel {
@@ -41,5 +41,10 @@ h1, h2 {
 .item9 {  background:#8C8C8C; }
 .item10 { background:#7F7F7F; }
 .item11 { background:#727272; }
-.item12 { background:#666;    }  
+.item12 { background:#666;    }
 
+#hslider {
+  float:left;
+  width:600px;
+  margin: 10px 20px;
+}
