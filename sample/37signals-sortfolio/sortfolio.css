@@ -106,6 +106,7 @@ code {
   display: inline-block;
   margin: 0;
   padding: 0;
+  height: 20px;
 }
 
 .ui-carousel-prev, .ui-carousel-next, .ui-carousel-horizontal .ui-carousel-paginate li {

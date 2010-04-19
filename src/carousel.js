@@ -207,8 +207,7 @@ S2.FX.Element.addMethods({
     function initialize(element, carousel) {
       this.element = $(element);
       this.carousel = carousel;
-      var nbPages = Math.ceil(carousel.elements.length / carousel.nbVisibleElements);
-      _createUI.call(this, nbPages);
+      _createUI.call(this);
       
       this.carousel.getContainer().observe("carousel:position:changed", _update.bind(this));
       this.ul.observe('click', _scroll.bind(this));
@@ -219,7 +218,8 @@ S2.FX.Element.addMethods({
     }
     
     // Private methods
-    function _createUI(nbPages) {
+    function _createUI() {
+      var nbPages = Math.ceil(this.carousel.elements.length / this.carousel.nbVisibleElements);
       this.ul = this.element.down('ul') || new Element('ul');
       for (var i=0; i<nbPages; i++) {
         this.ul.insert(new Element('li').addClassName('ui-icon ui-icon-bullet').update(i+1));
@@ -227,8 +227,8 @@ S2.FX.Element.addMethods({
       if (!this.ul.parentNode) {
         this.element.insert(this.ul);
       }
-      this.lis = this.ul.select('li')
-      _update.call(this)
+      this.lis = this.ul.select('li');
+      _update.call(this);
     }
     
     function _update(event) {
@@ -241,9 +241,10 @@ S2.FX.Element.addMethods({
     }
     
     function _scroll(event) {
-      var element = event.findElement('li'), 
-          page    = this.lis.indexOf(element);
-      this.goToPage(page);
+      var element = event.findElement('li');
+      if (element) {
+        this.goToPage(this.lis.indexOf(element));
+      }
     }
     
     return {initialize: initialize,

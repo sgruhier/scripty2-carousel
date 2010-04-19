@@ -13,59 +13,68 @@
 </head>
 
 <body>
-  <h1>Prototype Carousel Examples</h1>
-  <h2>Horizontal with slider</h2>
-  <div id="hcarousel" class="ui-carousel-horizontal">
-    <div class="ui-carousel-container">
-      <ul>
-        <li class="item1">1</li>
-        <li class="item2">2</li>
-        <li class="item3">3</li>
-        <li class="item4">4</li>
-        <li class="item5">5</li>
-        <li class="item6">6</li>
-        <li class="item7">7</li>
-        <li class="item8">8</li>
-        <li class="item9">9</li>
-        <li class="item10">10</li>
-        <li class="item11">11</li>
-        <li class="item12">12</li>
-      </ul>
+  <a href="http://github.com/sgruhier/scripty2-carousel"><img style="position: absolute; top: 0; left: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+  <div id="container">
+    <h1>Prototype Carousel Examples</h1>
+    <h2>Horizontal with slider</h2>
+    <div id="hcarousel" class="ui-carousel-horizontal">
+      <div class="ui-carousel-container">
+        <ul>
+          <li class="item1">1</li>
+          <li class="item2">2</li>
+          <li class="item3">3</li>
+          <li class="item4">4</li>
+          <li class="item5">5</li>
+          <li class="item6">6</li>
+          <li class="item7">7</li>
+          <li class="item8">8</li>
+          <li class="item9">9</li>
+          <li class="item10">10</li>
+          <li class="item11">11</li>
+          <li class="item12">12</li>
+        </ul>
+      </div>
+      <div class="ui-state-default ui-corner-all ui-carousel-prev ui-state-disabled">
+        <a class="ui-icon ui-icon-triangle-1-w" href="#" onclick="return false"></a>
+      </div>
+      <div id="hslider"></div>  
+      <div class="ui-state-default ui-corner-all ui-carousel-next ui-state-disabled">
+        <a class="ui-icon ui-icon-triangle-1-e" href="#" onclick="return false"></a>
+      </div>
     </div>
-    <div class="ui-state-default ui-corner-all ui-carousel-prev">
-      <a class="ui-icon ui-icon-triangle-1-w" href="#" onclick="return false"></a>
-    </div>
-    <div id="hslider"></div>  
-    <div class="ui-state-default ui-corner-all ui-carousel-next">
-      <a class="ui-icon ui-icon-triangle-1-e" href="#" onclick="return false"></a>
-    </div>
-  </div>
-  
-  <h2>Vertical with slider</h2>
-  <div id="vcarousel" class="ui-carousel-vertical">
-    <div class="ui-carousel-container">
-      <ul>
-        <li class="item1">1</li>
-        <li class="item2">2</li>
-        <li class="item3">3</li>
-        <li class="item4">4</li>
-        <li class="item5">5</li>
-        <li class="item6">6</li>
-        <li class="item7">7</li>
-        <li class="item8">8</li>
-        <li class="item9">9</li>
-        <li class="item10">10</li>
-        <li class="item11">11</li>
-        <li class="item12">12</li>
-      </ul>
-    </div>
-    <div class="ui-state-default ui-corner-all ui-carousel-prev">
-      <a class="ui-icon ui-icon-triangle-1-n" href="#" onclick="return false"></a>
-    </div>
-    <div id="vslider"></div>  
-    <div class="ui-state-default ui-corner-all ui-carousel-next">
-      <a class="ui-icon ui-icon-triangle-1-s" href="#" onclick="return false"></a>
-    </div>
+    <hr/>
+    <h3>Javascript code</h3>
+    <script src="http://gist.github.com/371244.js?file=gistfile1.js"></script>
+    <h3>HTML Markup</h3>
+    <script src="http://gist.github.com/371246.js?file=gistfile1.html"></script>
+
+    <h2>Vertical with slider</h2>
+    <p>It works but need to fix/updgrade scripty2 slider to make it work as needed</p>
+    <!-- <div id="vcarousel" class="ui-carousel-vertical">
+      <div class="ui-carousel-container">
+        <ul>
+          <li class="item1">1</li>
+          <li class="item2">2</li>
+          <li class="item3">3</li>
+          <li class="item4">4</li>
+          <li class="item5">5</li>
+          <li class="item6">6</li>
+          <li class="item7">7</li>
+          <li class="item8">8</li>
+          <li class="item9">9</li>
+          <li class="item10">10</li>
+          <li class="item11">11</li>
+          <li class="item12">12</li>
+        </ul>
+      </div>
+      <div class="ui-state-default ui-corner-all ui-carousel-prev">
+        <a class="ui-icon ui-icon-triangle-1-n" href="#" onclick="return false"></a>
+      </div>
+      <div id="vslider"></div>  
+      <div class="ui-state-default ui-corner-all ui-carousel-next">
+        <a class="ui-icon ui-icon-triangle-1-s" href="#" onclick="return false"></a>
+      </div>
+    </div> -->
   </div>
   <div style="clear:both; height:100px"></div>
 
@@ -74,8 +83,8 @@
   <script src="../../src/carousel.js" type="text/javascript"></script>
   
   <script type="text/javascript">
-    var hcarousel = new S2.UI.Carousel("hcarousel", {slider: 'hslider'});
-    var vcarousel = new S2.UI.Carousel("vcarousel", {slider: 'vslider', orientation: 'vertical'});
+    new S2.UI.Carousel("hcarousel", {slider: 'hslider'});
+    //new S2.UI.Carousel("vcarousel", {slider: 'vslider', orientation: 'vertical'});
   </script>
 </body>
 </html>
