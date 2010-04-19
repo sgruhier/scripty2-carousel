@@ -24,9 +24,11 @@ S2.FX.Element.addMethods({
       // Connect events
       if (this.next) {
         this.prev.observe('click', _scrollPrev.bind(this));
+        UI.addBehavior(this.prev, [UI.Behavior.Hover, UI.Behavior.Focus]);
       }
       if (this.prev) {
         this.next.observe('click', _scrollNext.bind(this));
+        UI.addBehavior(this.next, [UI.Behavior.Hover, UI.Behavior.Focus]);
       }
 
       // Pre-compute values depending of carousel's orientation
@@ -43,7 +45,8 @@ S2.FX.Element.addMethods({
       this.maxPos            = this.elements.length - this.nbVisibleElements;
     
       // Use a unique effect object!
-      this.effect = new S2.FX.Morph(this.container, Object.extend({after: _updateScrollButton.bind(this)}, this.options.fxOption));
+      this.effect = new S2.FX.Morph(this.container, 
+                                    Object.extend({after: _updateScrollButton.bind(this)}, this.options.fxOption));
     
       // Hack update effect method to fire carousel:position:changed
       var fxUpdate = this.effect.update, container = this.container;
@@ -56,7 +59,7 @@ S2.FX.Element.addMethods({
     }
 
     function isHorizontal() {
-      return this.options.direction == 'horizontal';
+      return this.options.orientation == 'horizontal';
     }
   
     function getEffect() {
@@ -115,29 +118,45 @@ S2.FX.Element.addMethods({
     }
 
     function _updateScrollButton() {
-      if (this.next && this.prev) {
-        var position = this.getPosition();
-        // Disable previous button if need be
-        this.prev[position == 0 ? "addClassName" : "removeClassName"](this.options.disableClass);
-        this.next[position + this.nbVisibleElements >= this.elements.length 
-          ? "addClassName" 
-          : "removeClassName"](this.options.disableClass);
+      var position = this.getPosition();
+      if (this.prev) {
+        if (position == 0) {
+          this.prev.addClassName(this.options.disableClass).removeClassName('ui-state-hover')
+        }
+        else {
+          this.prev.removeClassName(this.options.disableClass);
+        }
+      }
+      if (this.next) {
+        if (position + this.nbVisibleElements >= this.elements.length) {
+          this.next.addClassName(this.options.disableClass).removeClassName('ui-state-hover')
+        }
+        else {
+          this.next.removeClassName(this.options.disableClass);
+        }
       }
     }
   
     function _createSlider() {
       if (this.options.slider) {
-        var self= this;
+        var self= this, ignoreEvent = true;
         // Update method called when slider position changes
         var update  = (function(values, slider) {
-          self.goToRelative(values[0]/100, true)
+          ignoreEvent = true;
+          self.goToRelative(values[0]/100, true);
         });
       
         // Create slider
-        this.slider = new S2.UI.Slider(this.options.slider, {onSlide: update, onSlide: update});
+        this.slider = new S2.UI.Slider(this.options.slider, 
+                                       {onSlide: update, onSlide: update, orientation: this.options.orientation});
       
         this.getContainer().observe('carousel:position:changed', function(event) {
-          self.slider.setValue(self.getRelativePosition() * 100, 0);
+          if (ignoreEvent) {
+            ignoreEvent = false;
+          }
+          else {
+            self.slider.setValue(self.getRelativePosition() * 100, 0);
+          }
         });
       }
     };  
@@ -160,8 +179,8 @@ S2.FX.Element.addMethods({
       nextSelector:      '.ui-carousel-next',
       prevSelector:      '.ui-carousel-prev',
       containerSelector: '.ui-carousel-container ul',
-      disableClass:      'ui-hide',
-      direction:         'horizontal',
+      disableClass:      'ui-state-disabled',
+      orientation:       'horizontal',
       fxOption:          {duration: 0.75, transition: S2.FX.Transitions.easeInOutExpo},
       slider:            null
     }

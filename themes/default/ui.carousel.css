@@ -36,17 +36,6 @@
   text-align:center;
 }
 
-.ui-carousel-horizontal .ui-carousel-prev a,  .ui-carousel-horizontal .ui-carousel-next a {
-  color:#6CF;
-  text-decoration:none;
-  background: #C6F1FF;
-}
-
-.ui-carousel-horizontal .ui-carousel-prev a:hover,  .ui-carousel-horizontal .ui-carousel-next a:hover {
-  background: #6CF;
-  color:#FFF;
-}
-
 
 /* Vertical */
 .ui-carousel-vertical .ui-carousel-container {
@@ -84,15 +73,4 @@
   line-height: 20px;
   font-size: 20px;
   text-align:center;
-}
-
-.ui-carousel-vertical .ui-carousel-prev a,  .ui-carousel-vertical .ui-carousel-next a {
-  color:#6CF;
-  text-decoration:none;
-  background: #C6F1FF;
-}
-
-.ui-carousel-vertical .ui-carousel-prev a:hover,  .ui-carousel-vertical .ui-carousel-next a:hover {
-  background: #6CF;
-  color:#FFF;
 }

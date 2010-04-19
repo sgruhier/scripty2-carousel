@@ -26,7 +26,7 @@ h1, h2 {
   width: 100px;
 }
 
-.ui-hide {
+.ui-state-disabled {
   visibility:hidden;
 }
 
@@ -42,4 +42,27 @@ h1, h2 {
 .item10 { background:#7F7F7F; }
 .item11 { background:#727272; }
 .item12 { background:#666;    }  
+
+.ui-carousel-horizontal .ui-carousel-prev a,  .ui-carousel-horizontal .ui-carousel-next a {
+  color:#6CF;
+  text-decoration:none;
+  background: #C6F1FF;
+}
+
+.ui-carousel-horizontal .ui-carousel-prev a:hover,  .ui-carousel-horizontal .ui-carousel-next a:hover {
+  background: #6CF;
+  color:#FFF;
+}
+
+.ui-carousel-vertical .ui-carousel-prev a,  .ui-carousel-vertical .ui-carousel-next a {
+  color:#6CF;
+  text-decoration:none;
+  background: #C6F1FF;
+}
+
+.ui-carousel-vertical .ui-carousel-prev a:hover,  .ui-carousel-vertical .ui-carousel-next a:hover {
+  background: #6CF;
+  color:#FFF;
+}
+
 

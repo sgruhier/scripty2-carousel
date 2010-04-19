@@ -6,9 +6,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 	<title>Simple Example</title>
-	<link rel="stylesheet" href="simple.css" type="text/css" />
 	<link rel="stylesheet" href="../../themes/test/theme.css" type="text/css" />
 	<link rel="stylesheet" href="../../themes/default/ui.carousel.css" type="text/css" />
+	<link rel="stylesheet" href="simple.css" type="text/css" />
   
 </head>
 
@@ -16,7 +16,6 @@
   <h1>Prototype Carousel Samples</h1>
   <h2>Horizontal</h2>
   <div id="hcarousel" class="ui-carousel-horizontal">
-    <div class="ui-carousel-prev"><a href="#" onclick="return false">&lt;</a></div>
     <div class="ui-carousel-container">
       <ul>
         <li class="item1">1</li>
@@ -33,13 +32,17 @@
         <li class="item12">12</li>
       </ul>
     </div>
-    <div class="ui-carousel-next"><a href="#" onclick="return false">&gt;</a></div>
+    <div class="ui-state-default ui-corner-all ui-carousel-prev">
+      <a class="ui-icon ui-icon-triangle-1-w" href="#" onclick="return false"></a>
+    </div>
     <div id="hslider"></div>  
+    <div class="ui-state-default ui-corner-all ui-carousel-next">
+      <a class="ui-icon ui-icon-triangle-1-e" href="#" onclick="return false"></a>
+    </div>
   </div>
   
   <h2>Vertical</h2>
   <div id="vcarousel" class="ui-carousel-vertical">
-    <div class="ui-carousel-prev"><a href="#" onclick="return false">Previous</a></div>
     <div class="ui-carousel-container">
       <ul>
         <li class="item1">1</li>
@@ -56,9 +59,15 @@
         <li class="item12">12</li>
       </ul>
     </div>
-    <div class="ui-carousel-next"><a href="#" onclick="return false">Next</a></div>
+    <div class="ui-state-default ui-corner-all ui-carousel-prev">
+      <a class="ui-icon ui-icon-triangle-1-n" href="#" onclick="return false"></a>
+    </div>
+    <div id="vslider"></div>  
+    <div class="ui-state-default ui-corner-all ui-carousel-next">
+      <a class="ui-icon ui-icon-triangle-1-s" href="#" onclick="return false"></a>
+    </div>
   </div>
-
+  <div style="clear:both; height:100px"></div>
 
   <script src="../../lib/prototype.js" type="text/javascript"></script>
   <script src="../../lib/s2.js" type="text/javascript"></script>
@@ -66,6 +75,7 @@
   
   <script type="text/javascript">
     var hcarousel = new S2.UI.Carousel("hcarousel", {slider: 'hslider'});
+    var vcarousel = new S2.UI.Carousel("vcarousel", {slider: 'vslider', orientation: 'vertical'});
   </script>
 </body>
 </html>
