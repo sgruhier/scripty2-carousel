@@ -1,13 +1,17 @@
-First commit, project under development
+== Carousel component for scripty2
+ 
 
-== Work in progress:
+=== Work in progress:
 
-* Themes
 * Doc
 * Tests
-* More examples
 
-== demo
+=== demo
+
+* 37signals sortfolio carousel
+<img src='http://xilinus.com/scripty2-carousel/sample/37signals-sortfolio/thumb.png'/>
+http://xilinus.com/scripty2-carousel/sample/37signals-sortfolio/index.html
 
 * Apple store carousel
+<img src='http://xilinus.com/scripty2-carousel/sample/applestore/thumb.png'/>
 http://xilinus.com/scripty2-carousel/sample/applestore/index.html
