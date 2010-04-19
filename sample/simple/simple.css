@@ -43,6 +43,54 @@ h1, h2 {
 .item11 { background:#727272; }
 .item12 { background:#666;    }  
 
+/* Horizontal */
+.ui-carousel-horizontal .ui-carousel-container {
+  float: left;
+  width: 600px;
+  height: 200px;
+}
+
+.ui-carousel-horizontal .ui-carousel-container ul {
+  float:left;
+  height: 200px;
+}
+
+.ui-carousel-horizontal .ui-carousel-container ul li {
+  float:left;
+  width:200px;
+  height: 200px;
+  list-style:none;
+  line-height: 200px;
+  font-size: 50px;
+  text-align: center;
+  margin:0;
+  padding:0;
+}
+
+/* Vertical */
+.ui-carousel-vertical .ui-carousel-container {
+  float: left;
+  width: 100px;
+  height: 300px;
+}
+
+.ui-carousel-vertical .ui-carousel-container ul {
+  float:left;
+  width: 100px;
+}
+
+.ui-carousel-vertical .ui-carousel-container ul li {
+  float:left;
+  width:100px;
+  height: 100px;
+  list-style:none;
+  line-height: 100px;
+  font-size: 40px;
+  text-align: center;
+  margin:0;
+  padding:0;
+}
+
 .ui-carousel-horizontal .ui-carousel-prev a,  .ui-carousel-horizontal .ui-carousel-next a {
   color:#6CF;
   text-decoration:none;
@@ -52,6 +100,16 @@ h1, h2 {
 .ui-carousel-horizontal .ui-carousel-prev a:hover,  .ui-carousel-horizontal .ui-carousel-next a:hover {
   background: #6CF;
   color:#FFF;
+}
+
+.ui-carousel-horizontal .ui-carousel-prev,  .ui-carousel-horizontal .ui-carousel-next,
+.ui-carousel-horizontal .ui-carousel-prev a,  .ui-carousel-horizontal .ui-carousel-next a  {
+  float:left;
+  width: 20px;
+  height:200px;
+  line-height: 200px;
+  font-size: 20px;
+  text-align:center;
 }
 
 .ui-carousel-vertical .ui-carousel-prev a,  .ui-carousel-vertical .ui-carousel-next a {
@@ -65,4 +123,13 @@ h1, h2 {
   color:#FFF;
 }
 
+.ui-carousel-vertical .ui-carousel-prev,  .ui-carousel-vertical .ui-carousel-next,
+.ui-carousel-vertical .ui-carousel-prev a,  .ui-carousel-vertical .ui-carousel-next a  {
+  float:left;
+  height: 20px;
+  width:100px;
+  line-height: 20px;
+  font-size: 20px;
+  text-align:center;
+}
 

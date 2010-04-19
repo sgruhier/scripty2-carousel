@@ -1,0 +1,95 @@
+body {
+  
+}
+
+h1, h2 {
+  float:left;
+  width:100%;
+}
+ 
+#container {
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+  width:1024px;
+} 
+
+#hcarousel {
+  float:left;
+  width:600px;
+  height: 200px;
+}
+
+.item1 {  background:#F2F2F2; }
+.item2 {  background:#E5E5E5; }
+.item3 {  background:#D8D8D8; }
+.item4 {  background:#CCC;    }
+.item5 {  background:#BFBFBF; }
+.item6 {  background:#B2B2B2; }
+.item7 {  background:#A5A5A5; }
+.item8 {  background:#999;    }
+.item9 {  background:#8C8C8C; }
+.item10 { background:#7F7F7F; }
+.item11 { background:#727272; }
+.item12 { background:#666;    }  
+
+.ui-carousel-horizontal .ui-carousel-container {
+  float: left;
+  width: 600px;
+  height: 200px;
+}
+
+.ui-carousel-horizontal .ui-carousel-container ul {
+  float:left;
+  height: 200px;
+}
+
+.ui-carousel-horizontal .ui-carousel-container ul li {
+  float:left;
+  width:200px;
+  height: 200px;
+  list-style:none;
+  line-height: 200px;
+  font-size: 50px;
+  text-align: center;
+  margin:0;
+  padding:0;
+}
+
+.ui-carousel-horizontal .ui-carousel-prev a,  .ui-carousel-horizontal .ui-carousel-next a {
+  color:#6CF;
+  text-decoration:none;
+  background: #C6F1FF;
+}
+
+.ui-carousel-horizontal .ui-carousel-prev a:hover,  .ui-carousel-horizontal .ui-carousel-next a:hover {
+  background: #6CF;
+  color:#FFF;
+}
+
+.ui-carousel-horizontal .ui-carousel-paginate  {
+  text-align: center;
+}
+
+.ui-carousel-horizontal .ui-carousel-paginate ul {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+.ui-carousel-prev, .ui-carousel-next, .ui-carousel-horizontal .ui-carousel-paginate li {
+  display: inline-block;
+}
+
+.ui-carousel-horizontal .ui-carousel-paginate  .ui-state-hover { 
+  border: none; 
+  background-color: #FFF;
+  background-image: url(../../themes/test/images/ui-icons_228ef1_256x240.png); 
+  font-weight: bold; 
+}
+
+.ui-carousel-horizontal .ui-carousel-paginate ul li.ui-state-active { 
+  border: none; 
+  background-color: #FFF;
+  background-image: url(../../themes/test/images/ui-icons_ffd27a_256x240.png); 
+}

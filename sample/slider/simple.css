@@ -61,6 +61,29 @@ h1, h2 {
   background-position:-96px -15px;
 }
 
+.ui-carousel-horizontal .ui-carousel-container {
+  float: left;
+  width: 600px;
+  height: 200px;
+}
+
+.ui-carousel-horizontal .ui-carousel-container ul {
+  float:left;
+  height: 200px;
+}
+
+.ui-carousel-horizontal .ui-carousel-container ul li {
+  float:left;
+  width:200px;
+  height: 200px;
+  list-style:none;
+  line-height: 200px;
+  font-size: 50px;
+  text-align: center;
+  margin:0;
+  padding:0;
+}
+
 /* Verticak carousel */
 #vcarousel {
   float:left;
@@ -93,4 +116,27 @@ h1, h2 {
 
 .ui-icon-triangle-1-w {
   background-position:-96px -15px;
+}
+
+.ui-carousel-vertical .ui-carousel-container {
+  float: left;
+  width: 100px;
+  height: 300px;
+}
+
+.ui-carousel-vertical .ui-carousel-container ul {
+  float:left;
+  width: 100px;
+}
+
+.ui-carousel-vertical .ui-carousel-container ul li {
+  float:left;
+  width:100px;
+  height: 100px;
+  list-style:none;
+  line-height: 100px;
+  font-size: 40px;
+  text-align: center;
+  margin:0;
+  padding:0;
 }

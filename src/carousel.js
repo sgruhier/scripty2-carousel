@@ -56,6 +56,7 @@ S2.FX.Element.addMethods({
       }
       _updateScrollButton.call(this);
       _createSlider.call(this);
+      _createPaginator.call(this);
     }
 
     function isHorizontal() {
@@ -161,6 +162,11 @@ S2.FX.Element.addMethods({
       }
     };  
 
+    function _createPaginator() {
+      if (this.options.paginator) {
+        this.paginator = new UI.Carousel.Paginator(this.options.paginator, this);
+      }
+    }
     // Publish public methods
     return {initialize:           initialize,
             isHorizontal:         isHorizontal,
@@ -182,9 +188,57 @@ S2.FX.Element.addMethods({
       disableClass:      'ui-state-disabled',
       orientation:       'horizontal',
       fxOption:          {duration: 0.75, transition: S2.FX.Transitions.easeInOutExpo},
-      slider:            null
+      slider:            null,
+      paginator:         null
     }
   });
+  
+  UI.Carousel.Paginator = Class.create(UI.Base, (function() {
+    // Constructor
+    function initialize(element, carousel) {
+      this.element = $(element);
+      this.carousel = carousel;
+      var nbPages = Math.ceil(carousel.elements.length / carousel.nbVisibleElements);
+      _createUI.call(this, nbPages);
+      
+      this.carousel.getContainer().observe("carousel:position:changed", _update.bind(this));
+      this.ul.observe('click', _scroll.bind(this));
+    }
+    
+    function goToPage(page) {
+      this.carousel.goTo(page * this.carousel.nbVisibleElements)
+    }
+    
+    // Private methods
+    function _createUI(nbPages) {
+      this.ul = this.element.down('ul') || new Element('ul');
+      for (var i=0; i<nbPages; i++) {
+        this.ul.insert(new Element('li').addClassName('ui-icon ui-icon-bullet').update(i+1));
+      }
+      if (!this.ul.parentNode) {
+        this.element.insert(this.ul);
+      }
+      this.lis = this.ul.select('li')
+      _update.call(this)
+    }
+    
+    function _update(event) {
+      this.lis.invoke('removeClassName', 'ui-state-active');
+      this.lis[_currentPage.call(this)].addClassName('ui-state-active')
+    }
+    
+    function _currentPage() {
+      return Math.round(this.carousel.getPosition() / this.carousel.nbVisibleElements);
+    }
+    
+    function _scroll(event) {
+      var element = event.findElement('li'), 
+          page    = this.lis.indexOf(element);
+      this.goToPage(page);
+    }
+    
+    return {initialize: initialize,
+            goToPage:   goToPage}
+  })());
 })(S2.UI);
-
 
