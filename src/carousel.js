@@ -107,18 +107,26 @@ S2.FX.Element.addMethods({
     function _scrollPrev(event) {
       if (this.getPosition() > 0) {
         this.goTo(Math.ceil(this.getPosition() - this.nbVisibleElements));
-      } 
+      } else if (this.options.cycle === 'loop') {
+        this.goTo(this.elements.length - this.nbVisibleElements);
+      }
       event.stop();
     }
 
     function _scrollNext(event) {
       if (this.getPosition() + this.nbVisibleElements < this.elements.length) {
         this.goTo(Math.floor(this.getPosition() + this.nbVisibleElements));
+      } else if (this.options.cycle === 'loop') {
+        this.goTo(0);
       }
       event.stop();
     }
 
     function _updateScrollButton() {
+      // Buttons are always active if cycle option is activated
+      if (this.options.cycle) {
+        return;
+      }
       var position = this.getPosition();
       if (this.prev) {
         if (position == 0) {
@@ -189,7 +197,8 @@ S2.FX.Element.addMethods({
       orientation:       'horizontal',
       fxOption:          {duration: 0.75, transition: S2.FX.Transitions.easeInOutExpo},
       slider:            null,
-      paginator:         null
+      paginator:         null,
+      cycle:             null // Accepted values are "infinite", "loop"
     }
   });
   
