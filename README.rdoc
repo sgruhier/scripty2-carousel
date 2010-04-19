@@ -10,8 +10,10 @@
 
 * 37signals sortfolio carousel
 http://xilinus.com/scripty2-carousel/examples/37signals-sortfolio/thumb.png
+
 http://xilinus.com/scripty2-carousel/examples/37signals-sortfolio/index.html
 
 * Apple store carousel
 http://xilinus.com/scripty2-carousel/examples/applestore/thumb.png
+
 http://xilinus.com/scripty2-carousel/examples/applestore/index.html

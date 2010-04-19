@@ -157,7 +157,7 @@ S2.FX.Element.addMethods({
       
         // Create slider
         this.slider = new S2.UI.Slider(this.options.slider, 
-                                       {onSlide: update, onSlide: update, orientation: this.options.orientation});
+                                       {onSlide: update, onChange: update, orientation: this.options.orientation});
       
         this.getContainer().observe('carousel:position:changed', function(event) {
           if (ignoreEvent) {
