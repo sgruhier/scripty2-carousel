@@ -11,6 +11,7 @@ body {
   font-variant:normal;
   font-weight:normal;
   line-height:18px;
+  text-align:center;
 }
 
 a:link, a:visited, a:active {
@@ -25,6 +26,9 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  text-align: left;
+}
 a {
   color:#0488FF;
 }
@@ -32,16 +36,25 @@ a {
 #container {
   margin-left:auto;
   margin-right:auto;
-  text-align:center;
+  text-align:left;
   width:980px;
 } 
 
+p {
+  text-align:left;
+}
 
+code {
+  border: 1px solid #DDD;
+  background: #EEE;
+  padding: 2px 5px;
+}
 #hcarousel {
   display:inline-block;
   width:430px;
   height: 475px;
   text-align:left;
+  margin-left:20px;
 }
 
 #sortfolio_element {
@@ -73,21 +86,13 @@ a {
 .ui-carousel-horizontal .ui-carousel-container ul li {
   float:left;
   width:450px;
-  height: 400px;
   list-style:none;
-  margin:0;
   padding:0;
+  margin:0;
 }
 
-.ui-carousel-horizontal .ui-carousel-prev a,  .ui-carousel-horizontal .ui-carousel-next a {
-  color:#6CF;
-  text-decoration:none;
-  background: #C6F1FF;
-}
-
-.ui-carousel-horizontal .ui-carousel-prev a:hover,  .ui-carousel-horizontal .ui-carousel-next a:hover {
-  background: #6CF;
-  color:#FFF;
+.ui-carousel-horizontal .ui-carousel-prev ,  .ui-carousel-horizontal .ui-carousel-next  {
+  cursor: pointer;
 }
 
 .ui-carousel-horizontal .ui-carousel-paginate  {
@@ -151,5 +156,6 @@ a {
 }
 
 .pro-caption {
+  margin-right:20px;
   margin-top: 10px;
 }

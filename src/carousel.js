@@ -198,7 +198,7 @@ S2.FX.Element.addMethods({
       fxOption:          {duration: 0.75, transition: S2.FX.Transitions.easeInOutExpo},
       slider:            null,
       paginator:         null,
-      cycle:             null // Accepted values are "infinite", "loop"
+      cycle:             null // Accepted value is only "loop" so far
     }
   });
   
