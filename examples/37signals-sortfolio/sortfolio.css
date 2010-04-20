@@ -10,7 +10,6 @@ body {
   font-style:normal;
   font-variant:normal;
   font-weight:normal;
-  line-height:18px;
   text-align:center;
 }
 
@@ -50,7 +49,8 @@ code {
   padding: 2px 5px;
 }
 #hcarousel {
-  display:inline-block;
+  float:left;
+  display:inline;
   width:430px;
   height: 475px;
   text-align:left;
@@ -62,6 +62,7 @@ code {
   font-size: 12px;
   color:#666666;
   width: 470px;
+  height: 480px;
   margin: 20px 20px 20px 255px;
   background:#FFF;
   border-radius: 9px;
@@ -100,17 +101,21 @@ code {
   margin:10px 0;
   border-top: 1px solid #CCCCCC;
   padding-top: 10px;
+  float:left;
+  width:100%;
 }
 
 .ui-carousel-horizontal .ui-carousel-paginate ul {
-  display: inline-block;
-  margin: 0;
+  display: inline;
+  float:left;
+  margin: 0 0 0 140px;
   padding: 0;
   height: 20px;
 }
 
 .ui-carousel-prev, .ui-carousel-next, .ui-carousel-horizontal .ui-carousel-paginate li {
-  display: inline-block;
+  display: inline;
+  float:left;
 }
 
 .ui-carousel-horizontal .ui-carousel-paginate  .ui-state-hover { 
@@ -130,7 +135,10 @@ code {
   background-image:url(images/icon_slides.gif) !important;
   width:10px;
   height:10px;
-  display:inline-block;
+  float:left;
+  display:inline;
+  font-size:0;
+  line-height:1px;
   margin: 5px 3px 0 3px;
 }
 

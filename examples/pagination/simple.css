@@ -6,7 +6,6 @@ body {
   font-style:normal;
   font-variant:normal;
   font-weight:normal;
-  line-height:18px;
   text-align:center;
 }
 
@@ -14,21 +13,22 @@ h1, h2, h3 {
   float:left;
   width:100%;
 }
+
 h3 {
   margin-top:10px;  
 }
+
 hr {
   width:100%;
   height:10px;
   clear:both;
-  border:none;
+  border:1px solid #FFF;
 }
 
 .gist {
   clear:both;
 }
 
- 
 #container {
   margin-left:auto;
   margin-right:auto;
@@ -41,6 +41,12 @@ hr {
   width:600px;
   height: 200px;
   margin-left:200px;
+  display:inline;
+}
+
+#hpaginate {
+  float:left;
+  width:600px;
 }
 
 .item1 {  background:#F2F2F2; }
@@ -85,6 +91,11 @@ hr {
   background: #C6F1FF;
 }
 
+.ui-carousel-horizontal .ui-carousel-prev {
+  margin-left:255px;
+  display:inline;
+}
+
 .ui-carousel-horizontal .ui-carousel-prev a:hover,  .ui-carousel-horizontal .ui-carousel-next a:hover {
   background: #6CF;
   color:#FFF;
@@ -95,13 +106,17 @@ hr {
 }
 
 .ui-carousel-horizontal .ui-carousel-paginate ul {
-  display: inline-block;
+  display: inline;
   margin: 0;
   padding: 0;
 }
 
-.ui-carousel-prev, .ui-carousel-next, .ui-carousel-horizontal .ui-carousel-paginate li {
-  display: inline-block;
+.ui-carousel-horizontal .ui-carousel-paginate li {
+  float: left;
+}
+
+.ui-carousel-horizontal .ui-carousel-paginate span {
+  float:left;
 }
 
 .ui-carousel-horizontal .ui-carousel-paginate  .ui-state-hover { 
