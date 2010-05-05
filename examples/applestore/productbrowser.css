@@ -36,6 +36,33 @@ a {
   width:980px;
 } 
 
+#slider {
+  position:absolute;
+  top:152px; 
+  left:38px; 
+  width:904px; 
+  height:19px; 
+  overflow:hidden; 
+  background:url(images/productbrowser_scrollbar_20070622.png) no-repeat -20px 0;
+}
+
+#slider .ui-slider-handle {
+   position:absolute; 
+   width:141px; 
+   height:19px; 
+   background:url(images/productbrowser_scroller_20080115.png) no-repeat -20px 0; 
+   _behavior:url(iepngfix.htc); 
+   cursor:pointer; 
+   z-index:5;
+}
+
+#pb-leftarrow {
+  background:url(images/productbrowser_scrollbar_20070622.png) no-repeat 0 0;
+}
+
+#pb-rightarrow {
+  background:url(images/productbrowser_scrollbar_20070622.png) no-repeat top right;
+}
 
 /* PRODUCT BROWSER */
 #productbrowser { width:980px; height:180px; margin:0 2px; font-size:12px; line-height:18px; background:url(images/productbrowser_background_20081014.jpg) no-repeat top; overflow:auto; }
@@ -49,15 +76,15 @@ a {
 #pb-cat1,
 #pb-cat2,
 #pb-cat3,
-#pb-cat4 { position:absolute; top:0; z-index:150; color:#fff; font-size:11px; cursor:pointer; }
-#pb-cat1 { left:57px; }
-#pb-cat2 { left:296px; }
-#pb-cat3 { left:536px; }
-#pb-cat4 { left:833px; }
+#pb-cat4 { position:absolute; top:152px; z-index:150; color:#fff; font-size:11px; cursor:pointer; }
+#pb-cat1 { left:77px; }
+#pb-cat2 { left:316px; }
+#pb-cat3 { left:556px; }
+#pb-cat4 { left:853px; }
 #pb-productsliderhandle { position:absolute; width:181px; height:19px; cursor:pointer; z-index:200; }
 #pb-productsliderhandleimage { position:absolute; width:181px; height:19px; background:url(images/productbrowser_scroller_20080115.png) no-repeat; _behavior:url(iepngfix.htc); cursor:pointer; z-index:5; }
-#pb-leftarrow { position:absolute; left:17px; top:152px; width:20px; height:20px; background:transparent; z-index:150; cursor:pointer; }
-#pb-rightarrow { position:absolute; left:942px; top:152px; width:20px; height:20px; background:transparent; z-index:150; cursor:pointer; }
+#pb-leftarrow { position:absolute; left:18px; top:152px; width:20px; height:20px; z-index:150; cursor:pointer; }
+#pb-rightarrow { position:absolute; left:942px; top:152px; width:20px; height:20px; z-index:150; cursor:pointer; }
 #pb-iphone-leftarrow { position:absolute; left:0; top:0; height:180px; width:69px; z-index:1000; cursor:pointer; background:url(images/pb_arrows_04_left.png) no-repeat top; }
 #pb-iphone-rightarrow { position:absolute; left:910px; top:0; height:180px; width:69px; z-index:100000; cursor:pointer; background:url(images/pb_arrows_04_right.png) no-repeat top; }
 
