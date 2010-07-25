@@ -1,15 +1,29 @@
-// Add reset method to S2.FX.Element
-S2.FX.Element.addMethods({
-  reset: function() {
-    if(this.state == 'running') {
-      this.cancel();
-    }
-    this.state     = 'idle';
-    this.operators = [];
-  }
-});
-  
 (function(UI) {
+  var SlideEffect = Class.create(S2.FX.Base, {
+    initialize: function($super, carousel){
+      $super(carousel.options.fxOptions);      
+      this.element = carousel.getContainer();
+    },
+    update: function(position){
+      this.operator.render(position);
+      this.element.fire("carousel:position:changed", {position:position});
+    },
+    setup: function(){
+      this.element.fire('carousel:sliding:start');
+    },
+    teardown: function(){
+      this.operator = null;
+      this.element.fire('carousel:sliding:stop');
+    },
+    play: function($super, style){
+      if (this.state == 'running'){
+        this.cancel();
+      }
+      this.operator = new S2.FX.Operators.Style(this, this.element, {style: style});
+      $super();
+    }
+  });
+  
   UI.Carousel = Class.create(UI.Base, (function() {
     function initialize(element, options) {
       this.setOptions(options);
@@ -20,6 +34,7 @@ S2.FX.Element.addMethods({
       this.prev      = this.root.down(this.options.prevSelector);
       this.container = this.root.down(this.options.containerSelector);
       this.elements  = this.container.immediateDescendants();
+      this.effect    = new SlideEffect(this);
 
       // Connect events
       if (this.next) {
@@ -43,17 +58,9 @@ S2.FX.Element.addMethods({
       }
       this.nbVisibleElements = Math.floor(this.containerSize / this.elementSize);
       this.maxPos            = this.elements.length - this.nbVisibleElements;
-    
-      // Use a unique effect object!
-      this.effect = new S2.FX.Morph(this.container, 
-                                    Object.extend({after: _updateScrollButton.bind(this)}, this.options.fxOption));
-    
-      // Hack update effect method to fire carousel:position:changed
-      var fxUpdate = this.effect.update, container = this.container;
-      this.effect.update = function(position) {
-        fxUpdate.call(this, position);
-        container.fire("carousel:position:changed", {position:position});
-      }
+      
+      this.container.observe('carousel:sliding:stop', _updateScrollButton.bind(this));
+      
       _updateScrollButton.call(this);
       _createSlider.call(this);
       _createPaginator.call(this);
@@ -86,15 +93,13 @@ S2.FX.Element.addMethods({
 
       var pos   = - position * this.elementSize,
           style = 'margin-' + this.attribute + ':' + pos + 'px';
-      
+            
       if (withoutFx) {
-        this.effect.element.setStyle(style);
+        this.container.setStyle(style);
         this.container.fire("carousel:position:changed", {position:position});
         _updateScrollButton.call(this);
-      }
-      else {
-        this.effect.reset();
-        this.effect.play(this.effect.element, {style: style});    
+      } else {
+        this.effect.play(style);
       }
     }
   
