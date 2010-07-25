@@ -225,9 +225,15 @@
     function _createUI() {
       var nbPages = Math.ceil(this.carousel.elements.length / this.carousel.nbVisibleElements);
       this.ul = this.element.down('ul') || new Element('ul');
+      
+      var fragment = document.createDocumentFragment();
+      
       for (var i=0; i<nbPages; i++) {
-        this.ul.insert(new Element('li').addClassName('ui-icon ui-icon-bullet').update(i+1));
+        fragment.appendChild(new Element('li').addClassName('ui-icon ui-icon-bullet').update(i+1));
       }
+      
+      this.ul.appendChild(fragment)
+      
       if (!this.ul.parentNode) {
         this.element.insert(this.ul);
       }
