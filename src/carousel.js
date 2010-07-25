@@ -88,10 +88,7 @@
     }
 
     function goTo(position, withoutFx) {
-      position = Math.max(0, position);
-      position = Math.min(position, this.maxPos);
-
-      var pos   = - position * this.elementSize,
+      var pos   = - position.constrain(0, this.maxPos) * this.elementSize,
           style = 'margin-' + this.attribute + ':' + pos + 'px';
             
       if (withoutFx) {
