@@ -86,7 +86,7 @@ S2.FX.Element.addMethods({
 
       var pos   = - position * this.elementSize,
           style = 'margin-' + this.attribute + ':' + pos + 'px';
-    
+      
       if (withoutFx) {
         this.effect.element.setStyle(style);
         this.container.fire("carousel:position:changed", {position:position});
@@ -94,8 +94,7 @@ S2.FX.Element.addMethods({
       }
       else {
         this.effect.reset();
-        this.effect.animate('style', this.effect.element, {style: style, propertyTransitions: { }});
-        this.effect.play();    
+        this.effect.play(this.effect.element, {style: style});    
       }
     }
   
