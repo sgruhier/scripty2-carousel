@@ -209,7 +209,7 @@ S2.FX.Element.addMethods({
       _createUI.call(this);
       
       this.carousel.getContainer().observe("carousel:position:changed", _update.bind(this));
-      this.ul.observe('click', _scroll.bind(this));
+      this.ul.on('click', 'li', _scroll.bind(this));
     }
     
     function goToPage(page) {
@@ -239,11 +239,8 @@ S2.FX.Element.addMethods({
       return Math.round(this.carousel.getPosition() / this.carousel.nbVisibleElements);
     }
     
-    function _scroll(event) {
-      var element = event.findElement('li');
-      if (element) {
-        this.goToPage(this.lis.indexOf(element));
-      }
+    function _scroll(event, element) {
+      this.goToPage(this.lis.indexOf(element));
     }
     
     return {initialize: initialize,
