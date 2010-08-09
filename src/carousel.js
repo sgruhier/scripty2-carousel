@@ -1,7 +1,7 @@
 (function(UI) {
   var SlideEffect = Class.create(S2.FX.Base, {
     initialize: function($super, carousel){
-      $super(carousel.options.fxOptions);      
+			$super(carousel.options.fxOption);
       this.element = carousel.getContainer();
     },
     update: function(position){
@@ -19,7 +19,7 @@
       if (this.state == 'running'){
         this.cancel();
       }
-      this.operator = new S2.FX.Operators.Style(this, this.element, {style: style});
+      this.operator = new S2.FX.Operators.Style(this, this.element, {style: style}, this.options);
       $super();
     }
   });
@@ -27,7 +27,6 @@
   UI.Carousel = Class.create(UI.Base, (function() {
     function initialize(element, options) {
       this.setOptions(options);
-
       // Get elements
       this.root      = $(element);
       this.next      = this.root.down(this.options.nextSelector);
