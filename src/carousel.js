@@ -148,7 +148,7 @@
   
     function _createSlider() {
       if (this.options.slider) {
-        var self= this, ignoreEvent = true;
+        var self = this, ignoreEvent = true;
         // Update method called when slider position changes
         var update  = (function(values, slider) {
           ignoreEvent = true;
