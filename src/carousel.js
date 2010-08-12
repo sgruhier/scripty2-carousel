@@ -168,7 +168,7 @@
           }
         });
       }
-    };  
+    }
 
     function _createPaginator() {
       if (this.options.paginator) {
