@@ -254,4 +254,3 @@
             goToPage:   goToPage}
   })());
 })(S2.UI);
-
