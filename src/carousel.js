@@ -106,8 +106,9 @@
         this.goTo(this.elements.length - this.nbVisibleElements);
       }
       UI.addBehavior(this.prev, [UI.Behavior.Hover, UI.Behavior.Focus]);
-      if (!Object.isUndefined(event))
+      if (!Object.isUndefined(event)) {
         event.stop();
+      }
     }
 
     function scrollNext(event) {
@@ -117,8 +118,9 @@
         this.goTo(0);
       }
       UI.addBehavior(this.next, [UI.Behavior.Hover, UI.Behavior.Focus]);
-      if (!Object.isUndefined(event))
+      if (!Object.isUndefined(event)) {
         event.stop();
+      }
     }
 
     // Private methods
