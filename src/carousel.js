@@ -23,7 +23,7 @@
       $super();
     }
   });
-  
+
   UI.Carousel = Class.create(UI.Base, (function() {
     function initialize(element, options) {
       this.setOptions(options);
@@ -36,14 +36,10 @@
       this.effect    = new SlideEffect(this);
 
       // Connect events
-      if (this.next) {
-        this.prev.observe('click', _scrollPrev.bind(this));
-        UI.addBehavior(this.prev, [UI.Behavior.Hover, UI.Behavior.Focus]);
-      }
-      if (this.prev) {
-        this.next.observe('click', _scrollNext.bind(this));
-        UI.addBehavior(this.next, [UI.Behavior.Hover, UI.Behavior.Focus]);
-      }
+      if (this.next)
+        this.prev.observe('click', scrollPrev.bind(this));
+      if (this.prev)
+        this.next.observe('click', scrollNext.bind(this));
 
       // Pre-compute values depending of carousel's orientation
       if (this.isHorizontal()) {
@@ -57,9 +53,9 @@
       }
       this.nbVisibleElements = Math.floor(this.containerSize / this.elementSize);
       this.maxPos            = this.elements.length - this.nbVisibleElements;
-      
+
       this.container.observe('carousel:sliding:stop', _updateScrollButton.bind(this));
-      
+
       _updateScrollButton.call(this);
       _createSlider.call(this);
       _createPaginator.call(this);
@@ -68,7 +64,7 @@
     function isHorizontal() {
       return this.options.orientation == 'horizontal';
     }
-  
+
     function getEffect() {
       return this.effect;
     }
@@ -81,7 +77,7 @@
       var pos = - parseFloat(this.container.getStyle("margin-" + this.attribute));
       return pos / this.elementSize;
     }
-  
+
     function getRelativePosition() {
       return (this.getPosition() / this.maxPos);
     }
@@ -98,30 +94,36 @@
         this.effect.play(style);
       }
     }
-  
+
     function goToRelative(relativePos, withoutFx) {
       this.goTo(relativePos * this.maxPos, withoutFx);
     }
-  
-    // Private methods
-    function _scrollPrev(event) {
+
+    function scrollPrev(event) {
       if (this.getPosition() > 0) {
         this.goTo(Math.ceil(this.getPosition() - this.nbVisibleElements));
       } else if (this.options.cycle === 'loop') {
         this.goTo(this.elements.length - this.nbVisibleElements);
       }
-      event.stop();
+      UI.addBehavior(this.prev, [UI.Behavior.Hover, UI.Behavior.Focus]);
+      if (!Object.isUndefined(event)) {
+        event.stop();
+      }
     }
 
-    function _scrollNext(event) {
+    function scrollNext(event) {
       if (this.getPosition() + this.nbVisibleElements < this.elements.length) {
         this.goTo(Math.floor(this.getPosition() + this.nbVisibleElements));
       } else if (this.options.cycle === 'loop') {
         this.goTo(0);
       }
-      event.stop();
+      UI.addBehavior(this.next, [UI.Behavior.Hover, UI.Behavior.Focus]);
+      if (!Object.isUndefined(event)) {
+        event.stop();
+      }
     }
 
+    // Private methods
     function _updateScrollButton() {
       // Buttons are always active if cycle option is activated
       if (this.options.cycle) {
@@ -145,20 +147,20 @@
         }
       }
     }
-  
+
     function _createSlider() {
       if (this.options.slider) {
-        var self= this, ignoreEvent = true;
+        var self = this, ignoreEvent = true;
         // Update method called when slider position changes
         var update  = (function(values, slider) {
           ignoreEvent = true;
           self.goToRelative(values[0]/100, true);
         });
-      
+
         // Create slider
         this.slider = new S2.UI.Slider(this.options.slider, 
                                        {onSlide: update, onChange: update, orientation: this.options.orientation});
-      
+
         this.getContainer().observe('carousel:position:changed', function(event) {
           if (ignoreEvent) {
             ignoreEvent = false;
@@ -168,7 +170,7 @@
           }
         });
       }
-    };  
+    }
 
     function _createPaginator() {
       if (this.options.paginator) {
@@ -183,9 +185,11 @@
             getPosition:          getPosition,
             getRelativePosition:  getRelativePosition,
             goToRelative:         goToRelative,
-            goTo:                 goTo};
+            goTo:                 goTo,
+            scrollPrev:           scrollPrev,
+            scrollNext:           scrollNext};
   })());
-  
+
   // Class methods/variables
   Object.extend(UI.Carousel, {
     NAME: 'S2.UI.Carousel',
@@ -201,57 +205,56 @@
       cycle:             null // Accepted value is only "loop" so far
     }
   });
-  
+
   UI.Carousel.Paginator = Class.create(UI.Base, (function() {
     // Constructor
     function initialize(element, carousel) {
       this.element = $(element);
       this.carousel = carousel;
       _createUI.call(this);
-      
+
       this.carousel.getContainer().observe("carousel:position:changed", _update.bind(this));
       this.ul.on('click', 'li', _scroll.bind(this));
     }
-    
+
     function goToPage(page) {
       this.carousel.goTo(page * this.carousel.nbVisibleElements)
     }
-    
+
     // Private methods
     function _createUI() {
       var nbPages = Math.ceil(this.carousel.elements.length / this.carousel.nbVisibleElements);
       this.ul = this.element.down('ul') || new Element('ul');
-      
+
       var fragment = document.createDocumentFragment();
-      
+
       for (var i=0; i<nbPages; i++) {
         fragment.appendChild(new Element('li').addClassName('ui-icon ui-icon-bullet').update(i+1));
       }
-      
+
       this.ul.appendChild(fragment)
-      
+
       if (!this.ul.parentNode) {
         this.element.insert(this.ul);
       }
       this.lis = this.ul.select('li');
       _update.call(this);
     }
-    
+
     function _update(event) {
       this.lis.invoke('removeClassName', 'ui-state-active');
       this.lis[_currentPage.call(this)].addClassName('ui-state-active')
     }
-    
+
     function _currentPage() {
       return Math.round(this.carousel.getPosition() / this.carousel.nbVisibleElements);
     }
-    
+
     function _scroll(event, element) {
       this.goToPage(this.lis.indexOf(element));
     }
-    
+
     return {initialize: initialize,
             goToPage:   goToPage}
   })());
 })(S2.UI);
-
