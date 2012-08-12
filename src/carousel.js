@@ -56,6 +56,9 @@
 
       this.container.observe('carousel:sliding:stop', _updateScrollButton.bind(this));
 
+      UI.addBehavior(this.prev, [UI.Behavior.Hover, UI.Behavior.Focus]);
+      UI.addBehavior(this.next, [UI.Behavior.Hover, UI.Behavior.Focus]);
+
       _updateScrollButton.call(this);
       _createSlider.call(this);
       _createPaginator.call(this);
@@ -105,7 +108,6 @@
       } else if (this.options.cycle === 'loop') {
         this.goTo(this.elements.length - this.nbVisibleElements);
       }
-      UI.addBehavior(this.prev, [UI.Behavior.Hover, UI.Behavior.Focus]);
       if (!Object.isUndefined(event)) {
         event.stop();
       }
@@ -117,7 +119,6 @@
       } else if (this.options.cycle === 'loop') {
         this.goTo(0);
       }
-      UI.addBehavior(this.next, [UI.Behavior.Hover, UI.Behavior.Focus]);
       if (!Object.isUndefined(event)) {
         event.stop();
       }
